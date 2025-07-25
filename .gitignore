@@ -1,5 +1,6 @@
 # vscode
 .vscode 
 
-# # npm
-# node_modules
+# py stuff
+venv/
+__pycache__/
