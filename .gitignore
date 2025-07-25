@@ -1,6 +1,13 @@
 # vscode
 .vscode 
 
-# py stuff
+# .env file (environment variables)
+.env
+
+# package stuff
 venv/
 __pycache__/
+*.egg-info
+
+build/
+dist/
