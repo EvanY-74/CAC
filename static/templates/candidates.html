@@ -1,0 +1,236 @@
+{% extends "base.html" %}
+
+{% block title %}Candidate Information - MyNCRep{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row mb-4">
+        <div class="col">
+            <h1>
+                <i class="fas fa-users text-primary me-2"></i>
+                Candidate Information & Stances
+            </h1>
+            <p class="lead">
+                Learn about candidates running for office and their positions on key issues.
+            </p>
+        </div>
+    </div>
+
+    <!-- Filter Section -->
+    <div class="row mb-4">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <h5><i class="fas fa-filter me-2"></i>Filter Candidates</h5>
+                    <form method="GET">
+                        <div class="mb-3">
+                            <label class="form-label">Office</label>
+                            <select class="form-select" name="office">
+                                <option value="">All Offices</option>
+                                <option value="U.S. House">U.S. House of Representatives</option>
+                                <option value="U.S. Senate">U.S. Senate</option>
+                                <option value="Governor">Governor</option>
+                                <option value="State House">NC House of Representatives</option>
+                                <option value="State Senate">NC Senate</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">District</label>
+                            <input type="text" class="form-control" name="district" placeholder="Enter district number">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Apply Filters</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <h5><i class="fas fa-info-circle me-2"></i>How to Use This Page</h5>
+                    <ul class="mb-0">
+                        <li>Click on a candidate to see their full profile</li>
+                        <li>Review stances on key issues</li>
+                        <li>Information is sourced from official campaigns and public records</li>
+                        <li>This tool is non-partisan and educational</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Key Issues Section -->
+    <div class="row mb-4">
+        <div class="col">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0">
+                        <i class="fas fa-list-ul me-2"></i>
+                        Key Issues for North Carolina
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        {% for issue in key_issues %}
+                        <div class="col-md-3 col-sm-6 mb-2">
+                            <span class="badge bg-secondary me-1">{{ issue }}</span>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Candidates List -->
+    {% if candidates %}
+    <div class="row">
+        {% for candidate in candidates %}
+        <div class="col-lg-6 mb-4">
+            <div class="card h-100">
+                <div class="card-header">
+                    <div class="d-flex justify-content-between align-items-start">
+                        <div>
+                            <h5 class="mb-1">{{ candidate.name }}</h5>
+                            <small class="text-muted">{{ candidate.office }}</small>
+                            {% if candidate.district %}
+                            <br><small class="text-muted">District {{ candidate.district }}</small>
+                            {% endif %}
+                        </div>
+                        {% if candidate.party %}
+                        <span class="badge bg-info">{{ candidate.party }}</span>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="card-body">
+                    {% if candidate.bio %}
+                    <p class="card-text">{{ candidate.bio[:200] }}{% if candidate.bio|length > 200 %}...{% endif %}</p>
+                    {% endif %}
+                    
+                    {% if candidate.stances %}
+                    <h6><i class="fas fa-gavel me-2"></i>Key Positions:</h6>
+                    <ul class="list-unstyled">
+                        {% for stance in candidate.stances[:3] %}
+                        <li class="mb-2">
+                            <strong>{{ stance.issue }}:</strong>
+                            <br><small>{{ stance.stance[:100] }}{% if stance.stance|length > 100 %}...{% endif %}</small>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+                    
+                    <div class="mt-3">
+                        {% if candidate.website %}
+                        <a href="{{ candidate.website }}" target="_blank" class="btn btn-sm btn-outline-primary me-2">
+                            <i class="fas fa-external-link-alt me-1"></i>Website
+                        </a>
+                        {% endif %}
+                        <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#candidateModal{{ candidate.id }}">
+                            <i class="fas fa-info-circle me-1"></i>Full Profile
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Candidate Modal -->
+        <div class="modal fade" id="candidateModal{{ candidate.id }}" tabindex="-1">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">{{ candidate.name }}</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <strong>Office:</strong> {{ candidate.office }}
+                            </div>
+                            {% if candidate.district %}
+                            <div class="col-md-6">
+                                <strong>District:</strong> {{ candidate.district }}
+                            </div>
+                            {% endif %}
+                        </div>
+                        
+                        {% if candidate.party %}
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <strong>Party:</strong> <span class="badge bg-info">{{ candidate.party }}</span>
+                            </div>
+                        </div>
+                        {% endif %}
+                        
+                        {% if candidate.bio %}
+                        <h6>Biography</h6>
+                        <p>{{ candidate.bio }}</p>
+                        {% endif %}
+                        
+                        {% if candidate.stances %}
+                        <h6>Positions on Issues</h6>
+                        {% for stance in candidate.stances %}
+                        <div class="mb-3">
+                            <strong class="text-primary">{{ stance.issue }}</strong>
+                            <p>{{ stance.stance }}</p>
+                            {% if stance.source_url %}
+                            <small><a href="{{ stance.source_url }}" target="_blank">Source</a></small>
+                            {% endif %}
+                        </div>
+                        {% endfor %}
+                        {% endif %}
+                    </div>
+                    <div class="modal-footer">
+                        {% if candidate.website %}
+                        <a href="{{ candidate.website }}" target="_blank" class="btn btn-primary">
+                            <i class="fas fa-external-link-alt me-1"></i>Visit Website
+                        </a>
+                        {% endif %}
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <!-- No Candidates State -->
+    <div class="row">
+        <div class="col-lg-8 mx-auto text-center">
+            <div class="card">
+                <div class="card-body py-5">
+                    <i class="fas fa-users fa-4x text-muted mb-3"></i>
+                    <h4>No Candidates Available</h4>
+                    <p class="text-muted mb-4">
+                        Candidate information will be available closer to election dates. 
+                        Check back regularly for updates as elections approach.
+                    </p>
+                    <a href="{{ url_for('voting_info') }}" class="btn btn-primary">
+                        <i class="fas fa-info-circle me-2"></i>Learn About Voting Instead
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+    <!-- Information Card -->
+    <div class="row mt-4">
+        <div class="col">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0">
+                        <i class="fas fa-exclamation-circle text-info me-2"></i>
+                        About This Information
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <p class="mb-0">
+                        Candidate information is gathered from public sources, official campaign materials, 
+                        and voting records. MyNCRep is a non-partisan tool designed to help voters make 
+                        informed decisions. Always verify information with official sources and candidate websites.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

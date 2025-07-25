@@ -1,0 +1,233 @@
+{% extends "base.html" %}
+
+{% block title %}Government Terms Glossary - MyNCRep{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row mb-4">
+        <div class="col">
+            <h1>
+                <i class="fas fa-book text-primary me-2"></i>
+                Government Terms Glossary
+            </h1>
+            <p class="lead">
+                Learn essential government and political terms to help you better understand the democratic process.
+            </p>
+        </div>
+    </div>
+
+    <!-- Search and Filter -->
+    <div class="row mb-4">
+        <div class="col-lg-8">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <div class="input-group">
+                                <span class="input-group-text">
+                                    <i class="fas fa-search"></i>
+                                </span>
+                                <input type="text" class="form-control" id="search-terms" 
+                                       placeholder="Search for a term...">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <select class="form-select" id="category-filter" onchange="filterByCategory()">
+                                <option value="all" {% if selected_category == 'all' %}selected{% endif %}>All Categories</option>
+                                {% for category in categories %}
+                                <option value="{{ category }}" {% if selected_category == category %}selected{% endif %}>
+                                    {{ category }}
+                                </option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="card">
+                <div class="card-body text-center">
+                    <h6><i class="fas fa-lightbulb text-warning me-2"></i>Quick Tip</h6>
+                    <p class="small mb-0">
+                        Click on any term to see its definition. Use the search to find specific terms quickly.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Terms Display -->
+    <div class="row">
+        <div class="col">
+            {% if terms %}
+            <!-- Alphabetical Index -->
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h6 class="mb-3"><i class="fas fa-list-ul me-2"></i>Jump to Letter:</h6>
+                    <div class="d-flex flex-wrap">
+                        {% set alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ' %}
+                        {% for letter in alphabet %}
+                        <a href="#letter-{{ letter }}" class="btn btn-sm btn-outline-primary me-1 mb-1">{{ letter }}</a>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+
+            <!-- Terms by Letter -->
+            {% set current_letter = '' %}
+            {% for term in terms %}
+                {% set first_letter = term.term[0].upper() %}
+                {% if first_letter != current_letter %}
+                    {% set current_letter = first_letter %}
+                    <div class="anchor" id="letter-{{ current_letter }}"></div>
+                    <h3 class="text-primary mb-3 mt-4">{{ current_letter }}</h3>
+                {% endif %}
+                
+                <div class="card mb-3 term-card" data-term="{{ term.term.lower() }}" data-category="{{ term.category }}">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col">
+                                <h5 class="card-title text-primary">
+                                    {{ term.term }}
+                                    <span class="badge bg-secondary ms-2">{{ term.category }}</span>
+                                </h5>
+                                <p class="card-text">{{ term.definition }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+
+            {% else %}
+            <!-- No Terms State -->
+            <div class="card">
+                <div class="card-body text-center py-5">
+                    <i class="fas fa-book-open fa-4x text-muted mb-3"></i>
+                    <h4>No Terms Available</h4>
+                    <p class="text-muted mb-4">
+                        {% if selected_category != 'all' %}
+                        No terms found in the "{{ selected_category }}" category.
+                        {% else %}
+                        The glossary is being populated with terms. Check back soon!
+                        {% endif %}
+                    </p>
+                    {% if selected_category != 'all' %}
+                    <a href="{{ url_for('glossary') }}" class="btn btn-primary">
+                        <i class="fas fa-list me-2"></i>View All Terms
+                    </a>
+                    {% endif %}
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+
+    <!-- Categories Overview -->
+    {% if categories %}
+    <div class="row mt-5">
+        <div class="col">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0">
+                        <i class="fas fa-tags text-primary me-2"></i>
+                        Browse by Category
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        {% for category in categories %}
+                        <div class="col-md-4 col-sm-6 mb-2">
+                            <a href="{{ url_for('glossary', category=category) }}" 
+                               class="btn btn-outline-primary btn-sm w-100 {% if selected_category == category %}active{% endif %}">
+                                {{ category }}
+                            </a>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+    <!-- Learning Resources -->
+    <div class="row mt-4">
+        <div class="col-lg-6">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0">
+                        <i class="fas fa-graduation-cap text-success me-2"></i>
+                        Learn More
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <p class="small">Want to learn more about government and civics?</p>
+                    <ul class="small">
+                        <li><a href="{{ url_for('voting_info') }}">Voting Process Guide</a></li>
+                        <li><a href="{{ url_for('representatives') }}">Find Your Representatives</a></li>
+                        <li><a href="https://www.congress.gov/" target="_blank">Congress.gov</a></li>
+                        <li><a href="https://www.usa.gov/branches-of-government" target="_blank">Branches of Government</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0">
+                        <i class="fas fa-question-circle text-info me-2"></i>
+                        Suggest a Term
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <p class="small">
+                        Don't see a term you're looking for? Government and political terminology 
+                        can be complex. We're always working to expand our glossary.
+                    </p>
+                    <p class="small mb-0">
+                        <strong>Common categories include:</strong> Legislative Process, Elections, 
+                        Representation, Political Process, Judicial, and Executive branches.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+// Search functionality
+document.getElementById('search-terms').addEventListener('input', function() {
+    const searchTerm = this.value.toLowerCase();
+    const termCards = document.querySelectorAll('.term-card');
+    
+    termCards.forEach(card => {
+        const termName = card.dataset.term;
+        const termText = card.textContent.toLowerCase();
+        
+        if (termText.includes(searchTerm)) {
+            card.style.display = 'block';
+        } else {
+            card.style.display = 'none';
+        }
+    });
+});
+
+// Category filter functionality
+function filterByCategory() {
+    const selectedCategory = document.getElementById('category-filter').value;
+    window.location.href = '{{ url_for("glossary") }}?category=' + selectedCategory;
+}
+
+// Smooth scrolling for alphabet links
+document.querySelectorAll('a[href^="#letter-"]').forEach(link => {
+    link.addEventListener('click', function(e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+    });
+});
+</script>
+{% endblock %}

@@ -1,0 +1,149 @@
+{% extends "base.html" %}
+
+{% block title %}Voter Eligibility Quiz - MyNCRep{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-lg-8 mx-auto">
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="mb-0">
+                        <i class="fas fa-clipboard-question text-primary me-2"></i>
+                        Voter Eligibility Quiz
+                    </h2>
+                </div>
+                <div class="card-body">
+                    <p class="lead mb-4">
+                        Let's determine your voting eligibility and personalize your experience on MyNCRep.
+                    </p>
+                    
+                    <form method="POST" action="{{ url_for('submit_quiz') }}">
+                        <!-- Age Question -->
+                        <div class="mb-4">
+                            <label class="form-label h5">
+                                <i class="fas fa-birthday-cake me-2"></i>
+                                How old are you?
+                            </label>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <input type="number" class="form-control" name="age" min="16" max="120" required>
+                                </div>
+                                <div class="col-md-8">
+                                    <small class="form-text text-muted">
+                                        You must be 18 years old by Election Day to vote.
+                                    </small>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Citizenship Question -->
+                        <div class="mb-4">
+                            <label class="form-label h5">
+                                <i class="fas fa-flag-usa me-2"></i>
+                                Are you a U.S. citizen?
+                            </label>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="citizenship" value="yes" id="citizen-yes" required>
+                                <label class="form-check-label" for="citizen-yes">Yes</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="citizenship" value="no" id="citizen-no" required>
+                                <label class="form-check-label" for="citizen-no">No</label>
+                            </div>
+                        </div>
+
+                        <!-- Registration Question -->
+                        <div class="mb-4">
+                            <label class="form-label h5">
+                                <i class="fas fa-user-check me-2"></i>
+                                Are you registered to vote in North Carolina?
+                            </label>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="registered" value="yes" id="registered-yes" required>
+                                <label class="form-check-label" for="registered-yes">Yes</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="registered" value="no" id="registered-no" required>
+                                <label class="form-check-label" for="registered-no">No</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="registered" value="unsure" id="registered-unsure" required>
+                                <label class="form-check-label" for="registered-unsure">I'm not sure</label>
+                            </div>
+                            <small class="form-text text-muted">
+                                You can check your registration status at 
+                                <a href="https://www.ncsbe.gov/Voters/Registering-to-Vote" target="_blank">ncsbe.gov</a>
+                            </small>
+                        </div>
+
+                        <!-- Address Question -->
+                        <div class="mb-4">
+                            <label class="form-label h5">
+                                <i class="fas fa-map-marker-alt me-2"></i>
+                                What's your address? (Optional)
+                            </label>
+                            <input type="text" class="form-control" name="address" 
+                                   placeholder="Enter your full address in North Carolina">
+                            <small class="form-text text-muted">
+                                This helps us provide personalized information about your polling location and representatives.
+                                Your address is not stored permanently.
+                            </small>
+                        </div>
+
+                        <!-- Election Type Question -->
+                        <div class="mb-4">
+                            <label class="form-label h5">
+                                <i class="fas fa-vote-yea me-2"></i>
+                                What type of election information are you most interested in?
+                            </label>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="election_type" value="all" id="election-all" required>
+                                <label class="form-check-label" for="election-all">All elections</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="election_type" value="federal" id="election-federal" required>
+                                <label class="form-check-label" for="election-federal">Federal elections (President, Congress)</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="election_type" value="state" id="election-state" required>
+                                <label class="form-check-label" for="election-state">State elections (Governor, State Legislature)</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="election_type" value="local" id="election-local" required>
+                                <label class="form-check-label" for="election-local">Local elections (Mayor, City Council, School Board)</label>
+                            </div>
+                        </div>
+
+                        <!-- Submit Button -->
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-primary btn-lg">
+                                <i class="fas fa-check me-2"></i>
+                                Submit Quiz
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Additional Information Card -->
+            <div class="card mt-4">
+                <div class="card-header">
+                    <h5 class="mb-0">
+                        <i class="fas fa-lightbulb text-warning me-2"></i>
+                        Did You Know?
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <ul class="mb-0">
+                        <li>You can register to vote online at <a href="https://www.ncsbe.gov/" target="_blank">ncsbe.gov</a></li>
+                        <li>North Carolina allows same-day registration during early voting</li>
+                        <li>You must bring photo ID to vote, but there are exceptions for reasonable impediment</li>
+                        <li>Early voting in NC typically runs for 17 days before Election Day</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
