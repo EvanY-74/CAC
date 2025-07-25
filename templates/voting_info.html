@@ -1,0 +1,286 @@
+{% extends "base.html" %}
+
+{% block title %}Voting Information - MyNCRep{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row mb-4">
+        <div class="col">
+            <h1>
+                <i class="fas fa-info-circle text-primary me-2"></i>
+                North Carolina Voting Information
+            </h1>
+            <p class="lead">
+                Everything you need to know about voting in North Carolina, from registration to casting your ballot.
+            </p>
+        </div>
+    </div>
+
+    <!-- Quick Navigation -->
+    <div class="row mb-4">
+        <div class="col">
+            <div class="card">
+                <div class="card-body">
+                    <h5>Quick Navigation</h5>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <a href="#requirements" class="btn btn-outline-primary btn-sm mb-2 w-100">
+                                <i class="fas fa-clipboard-list me-1"></i>Requirements
+                            </a>
+                        </div>
+                        <div class="col-md-3">
+                            <a href="#process" class="btn btn-outline-primary btn-sm mb-2 w-100">
+                                <i class="fas fa-list-ol me-1"></i>Voting Process
+                            </a>
+                        </div>
+                        <div class="col-md-3">
+                            <a href="#dates" class="btn btn-outline-primary btn-sm mb-2 w-100">
+                                <i class="fas fa-calendar me-1"></i>Important Dates
+                            </a>
+                        </div>
+                        <div class="col-md-3">
+                            <a href="#resources" class="btn btn-outline-primary btn-sm mb-2 w-100">
+                                <i class="fas fa-external-link-alt me-1"></i>Resources
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Voter Requirements -->
+    <div class="row mb-4" id="requirements">
+        <div class="col">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="mb-0">
+                        <i class="fas fa-clipboard-list text-primary me-2"></i>
+                        Voter Requirements
+                    </h4>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        {% for requirement, description in requirements.items() %}
+                        <div class="col-md-6 mb-3">
+                            <div class="d-flex">
+                                <i class="fas fa-check-circle text-success me-3 mt-1"></i>
+                                <div>
+                                    <strong>{{ requirement.replace('_', ' ').title() }}:</strong>
+                                    <br><span class="text-muted">{{ description }}</span>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    
+                    <div class="alert alert-warning mt-3">
+                        <h6><i class="fas fa-exclamation-triangle me-2"></i>Photo ID Requirement</h6>
+                        <p class="mb-2">North Carolina requires photo ID to vote. Acceptable forms include:</p>
+                        <ul class="mb-2">
+                            <li>NC driver's license</li>
+                            <li>NC DMV-issued ID card</li>
+                            <li>U.S. passport</li>
+                            <li>U.S. military ID</li>
+                            <li>NC voter photo ID card (free from DMV)</li>
+                        </ul>
+                        <p class="mb-0">
+                            <strong>Can't get ID?</strong> You may still vote by signing a reasonable impediment declaration.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Voting Process -->
+    <div class="row mb-4" id="process">
+        <div class="col">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="mb-0">
+                        <i class="fas fa-list-ol text-primary me-2"></i>
+                        Step-by-Step Voting Process
+                    </h4>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        {% for loop_index, step in steps|enumerate %}
+                        <div class="col-lg-6 mb-3">
+                            <div class="d-flex">
+                                <div class="flex-shrink-0">
+                                    <span class="badge bg-primary rounded-pill fs-6">{{ loop.index }}</span>
+                                </div>
+                                <div class="ms-3">
+                                    <h6>{{ step }}</h6>
+                                    {% if loop.index == 1 %}
+                                    <small class="text-muted">Visit <a href="https://www.ncsbe.gov/Voters/Registering-to-Vote" target="_blank">ncsbe.gov</a> to check status</small>
+                                    {% elif loop.index == 2 %}
+                                    <small class="text-muted">Use our <a href="{{ url_for('polling_map') }}">polling site finder</a></small>
+                                    {% elif loop.index == 3 %}
+                                    <small class="text-muted">Or sign reasonable impediment declaration if needed</small>
+                                    {% elif loop.index == 4 %}
+                                    <small class="text-muted">Take your time, ask for help if needed</small>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Voting Options -->
+    <div class="row mb-4">
+        <div class="col-md-4">
+            <div class="card h-100">
+                <div class="card-body text-center">
+                    <i class="fas fa-calendar-alt fa-3x text-primary mb-3"></i>
+                    <h5>Election Day Voting</h5>
+                    <p>Vote at your assigned polling place on Election Day from 6:30 AM to 7:30 PM.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card h-100">
+                <div class="card-body text-center">
+                    <i class="fas fa-clock fa-3x text-success mb-3"></i>
+                    <h5>Early Voting</h5>
+                    <p>Vote early at any early voting site in your county during the 17-day early voting period.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card h-100">
+                <div class="card-body text-center">
+                    <i class="fas fa-envelope fa-3x text-info mb-3"></i>
+                    <h5>Absentee Voting</h5>
+                    <p>Vote by mail if you're 65+, have a qualifying reason, or are a military/overseas voter.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Important Dates -->
+    <div class="row mb-4" id="dates">
+        <div class="col">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="mb-0">
+                        <i class="fas fa-calendar text-primary me-2"></i>
+                        Important Dates & Deadlines
+                    </h4>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        {% for date_info in dates %}
+                        <div class="col-md-4 mb-3">
+                            <div class="border p-3 rounded">
+                                <h6 class="text-primary">{{ date_info.event }}</h6>
+                                <p class="mb-0"><strong>{{ date_info.date }}</strong></p>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    
+                    <div class="alert alert-info mt-3">
+                        <h6><i class="fas fa-info-circle me-2"></i>Same-Day Registration</h6>
+                        <p class="mb-0">
+                            North Carolina allows same-day voter registration during the early voting period. 
+                            You can register and vote at the same time at any early voting site.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Registration Information -->
+    <div class="row mb-4">
+        <div class="col-lg-6">
+            <div class="card h-100">
+                <div class="card-header">
+                    <h5 class="mb-0">
+                        <i class="fas fa-user-plus text-success me-2"></i>
+                        Not Registered Yet?
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <p>You can register to vote:</p>
+                    <ul>
+                        <li>Online at <a href="https://www.ncsbe.gov/" target="_blank">ncsbe.gov</a></li>
+                        <li>By mail using a voter registration form</li>
+                        <li>In person at your county board of elections</li>
+                        <li>At the DMV when getting/renewing your license</li>
+                        <li>During early voting (same-day registration)</li>
+                    </ul>
+                    <a href="https://www.ncsbe.gov/Voters/Registering-to-Vote" target="_blank" class="btn btn-success">
+                        <i class="fas fa-external-link-alt me-2"></i>Register Online
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="card h-100">
+                <div class="card-header">
+                    <h5 class="mb-0">
+                        <i class="fas fa-question-circle text-warning me-2"></i>
+                        Need Help?
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <p>Get assistance with:</p>
+                    <ul>
+                        <li>Voter registration questions</li>
+                        <li>Polling location information</li>
+                        <li>Ballot questions</li>
+                        <li>Accessibility accommodations</li>
+                        <li>Language assistance</li>
+                    </ul>
+                    <p><strong>NC State Board of Elections:</strong><br>
+                    Phone: (919) 814-0700<br>
+                    Email: <a href="mailto:elections.info@ncsbe.gov">elections.info@ncsbe.gov</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Resources -->
+    <div class="row" id="resources">
+        <div class="col">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="mb-0">
+                        <i class="fas fa-external-link-alt text-primary me-2"></i>
+                        Additional Resources
+                    </h4>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h6>Official Resources</h6>
+                            <ul>
+                                <li><a href="https://www.ncsbe.gov/" target="_blank">NC State Board of Elections</a></li>
+                                <li><a href="https://www.ncsbe.gov/Voters/Registering-to-Vote" target="_blank">Voter Registration</a></li>
+                                <li><a href="https://vt.ncsbe.gov/RegLkup/" target="_blank">Check Registration Status</a></li>
+                                <li><a href="https://www.ncsbe.gov/Voters/Polling-Place-Information" target="_blank">Find Your Polling Place</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-md-6">
+                            <h6>Educational Resources</h6>
+                            <ul>
+                                <li><a href="https://www.vote411.org/" target="_blank">Vote411 (League of Women Voters)</a></li>
+                                <li><a href="https://www.usa.gov/voting" target="_blank">USA.gov Voting Guide</a></li>
+                                <li><a href="{{ url_for('glossary') }}">Government Terms Glossary</a></li>
+                                <li><a href="{{ url_for('representatives') }}">Find Your Representatives</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

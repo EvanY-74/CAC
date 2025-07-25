@@ -1,0 +1,333 @@
+{% extends "base.html" %}
+
+{% block title %}Find Your Representatives - MyNCRep{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row mb-4">
+        <div class="col">
+            <h1>
+                <i class="fas fa-user-tie text-primary me-2"></i>
+                Find Your Representatives
+            </h1>
+            <p class="lead">
+                Enter your address to find your local, state, and federal representatives.
+            </p>
+        </div>
+    </div>
+
+    <!-- Address Input -->
+    <div class="row mb-4">
+        <div class="col-lg-8 mx-auto">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0">
+                        <i class="fas fa-search me-2"></i>
+                        Find Your Representatives
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <form id="representative-form">
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </span>
+                            <input type="text" class="form-control form-control-lg" 
+                                   id="address-input" name="address"
+                                   placeholder="Enter your full address (street, city, state, zip)"
+                                   required>
+                            <button class="btn btn-primary btn-lg" type="submit">
+                                <i class="fas fa-search me-2"></i>Find Representatives
+                            </button>
+                        </div>
+                        <small class="form-text text-muted">
+                            <i class="fas fa-info-circle me-1"></i>
+                            Include your complete address for the most accurate results
+                        </small>
+                    </form>
+
+                    <!-- Loading State -->
+                    <div id="loading" class="text-center mt-4 d-none">
+                        <div class="spinner-border text-primary" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                        <p class="mt-2">Finding your representatives...</p>
+                    </div>
+
+                    <!-- Error State -->
+                    <div id="error-message" class="alert alert-danger mt-3 d-none"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Results Section -->
+    <div id="results" class="d-none">
+        <!-- Federal Representatives -->
+        <div class="row mb-4">
+            <div class="col">
+                <h3>
+                    <i class="fas fa-flag-usa text-primary me-2"></i>
+                    Federal Representatives
+                </h3>
+                <div id="federal-reps" class="row"></div>
+            </div>
+        </div>
+
+        <!-- State Representatives -->
+        <div class="row mb-4">
+            <div class="col">
+                <h3>
+                    <i class="fas fa-university text-success me-2"></i>
+                    State Representatives
+                </h3>
+                <div id="state-reps" class="row"></div>
+            </div>
+        </div>
+
+        <!-- Local Representatives -->
+        <div class="row mb-4">
+            <div class="col">
+                <h3>
+                    <i class="fas fa-building text-info me-2"></i>
+                    Local Representatives
+                </h3>
+                <div id="local-reps" class="row"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Information Cards -->
+    <div class="row">
+        <div class="col-lg-4">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0">
+                        <i class="fas fa-info-circle text-primary me-2"></i>
+                        About Your Representatives
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <p class="small">Your representatives work at different levels of government:</p>
+                    <ul class="small mb-0">
+                        <li><strong>Federal:</strong> President, U.S. Senators, U.S. House Representative</li>
+                        <li><strong>State:</strong> Governor, State Senators, State House Representatives</li>
+                        <li><strong>Local:</strong> Mayor, City Council, County Commissioners, School Board</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-lg-4">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0">
+                        <i class="fas fa-envelope text-success me-2"></i>
+                        Contact Your Representatives
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <p class="small">Ways to reach out to your representatives:</p>
+                    <ul class="small mb-0">
+                        <li>Call their offices (most effective)</li>
+                        <li>Send emails through official websites</li>
+                        <li>Write letters to their office addresses</li>
+                        <li>Attend town halls and public meetings</li>
+                        <li>Follow them on social media</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-lg-4">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0">
+                        <i class="fas fa-vote-yea text-warning me-2"></i>
+                        Stay Engaged
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <p class="small">Keep up with your representatives:</p>
+                    <ul class="small mb-0">
+                        <li>Track their voting records</li>
+                        <li>Read their position statements</li>
+                        <li>Sign up for their newsletters</li>
+                        <li>Attend community events</li>
+                        <li>Vote in all elections they appear on</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Resources -->
+    <div class="row mt-4">
+        <div class="col">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0">
+                        <i class="fas fa-external-link-alt text-primary me-2"></i>
+                        Additional Resources
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <h6>Federal</h6>
+                            <ul class="small">
+                                <li><a href="https://www.congress.gov/members" target="_blank">Find Members of Congress</a></li>
+                                <li><a href="https://www.senate.gov/senators/" target="_blank">U.S. Senate</a></li>
+                                <li><a href="https://www.house.gov/representatives" target="_blank">U.S. House</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-md-3">
+                            <h6>North Carolina State</h6>
+                            <ul class="small">
+                                <li><a href="https://www.ncleg.gov/" target="_blank">NC General Assembly</a></li>
+                                <li><a href="https://governor.nc.gov/" target="_blank">NC Governor</a></li>
+                                <li><a href="https://www.ncsbe.gov/" target="_blank">NC Elections</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-md-3">
+                            <h6>Local Government</h6>
+                            <ul class="small">
+                                <li><a href="https://www.nclm.org/" target="_blank">NC League of Municipalities</a></li>
+                                <li><a href="https://www.ncacc.org/" target="_blank">NC Association of Counties</a></li>
+                                <li><a href="https://www.ncschoolboards.org/" target="_blank">NC School Boards</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-md-3">
+                            <h6>Civic Engagement</h6>
+                            <ul class="small">
+                                <li><a href="{{ url_for('voting_info') }}">Voting Information</a></li>
+                                <li><a href="{{ url_for('candidates') }}">Candidate Information</a></li>
+                                <li><a href="{{ url_for('glossary') }}">Government Glossary</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+document.getElementById('representative-form').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    
+    const address = document.getElementById('address-input').value.trim();
+    if (!address) return;
+    
+    // Show loading state
+    document.getElementById('loading').classList.remove('d-none');
+    document.getElementById('results').classList.add('d-none');
+    document.getElementById('error-message').classList.add('d-none');
+    
+    try {
+        const response = await fetch(`/api/representatives?address=${encodeURIComponent(address)}`);
+        const data = await response.json();
+        
+        if (data.success) {
+            displayRepresentatives(data.representatives);
+            document.getElementById('results').classList.remove('d-none');
+        } else {
+            showError(data.error || 'Unable to find representatives for this address.');
+        }
+    } catch (error) {
+        console.error('Error fetching representatives:', error);
+        showError('An error occurred while searching for representatives. Please try again.');
+    } finally {
+        document.getElementById('loading').classList.add('d-none');
+    }
+});
+
+function displayRepresentatives(representatives) {
+    const federalContainer = document.getElementById('federal-reps');
+    const stateContainer = document.getElementById('state-reps');
+    const localContainer = document.getElementById('local-reps');
+    
+    // Clear previous results
+    federalContainer.innerHTML = '';
+    stateContainer.innerHTML = '';
+    localContainer.innerHTML = '';
+    
+    if (representatives.length === 0) {
+        showError('No representatives found for this address.');
+        return;
+    }
+    
+    representatives.forEach(rep => {
+        const repCard = createRepresentativeCard(rep);
+        
+        // Categorize by office level
+        const office = rep.office.toLowerCase();
+        if (office.includes('president') || office.includes('senate') || office.includes('house') && office.includes('u.s.')) {
+            federalContainer.appendChild(repCard);
+        } else if (office.includes('governor') || office.includes('state') || office.includes('general assembly')) {
+            stateContainer.appendChild(repCard);
+        } else {
+            localContainer.appendChild(repCard);
+        }
+    });
+}
+
+function createRepresentativeCard(rep) {
+    const col = document.createElement('div');
+    col.className = 'col-md-6 col-lg-4 mb-3';
+    
+    col.innerHTML = `
+        <div class="card h-100">
+            <div class="card-body">
+                <div class="d-flex align-items-start mb-3">
+                    ${rep.photo_url ? `<img src="${rep.photo_url}" class="rounded-circle me-3" width="60" height="60" alt="${rep.name}">` : '<div class="bg-secondary rounded-circle me-3 d-flex align-items-center justify-content-center" style="width: 60px; height: 60px;"><i class="fas fa-user text-white"></i></div>'}
+                    <div>
+                        <h6 class="card-title mb-1">${rep.name}</h6>
+                        <p class="text-primary small mb-1">${rep.office}</p>
+                        ${rep.party ? `<span class="badge bg-info">${rep.party}</span>` : ''}
+                    </div>
+                </div>
+                
+                <div class="contact-info">
+                    ${rep.phones && rep.phones.length > 0 ? `
+                        <p class="small mb-2">
+                            <i class="fas fa-phone me-2"></i>
+                            <a href="tel:${rep.phones[0]}">${rep.phones[0]}</a>
+                        </p>
+                    ` : ''}
+                    
+                    ${rep.emails && rep.emails.length > 0 ? `
+                        <p class="small mb-2">
+                            <i class="fas fa-envelope me-2"></i>
+                            <a href="mailto:${rep.emails[0]}">${rep.emails[0]}</a>
+                        </p>
+                    ` : ''}
+                    
+                    ${rep.urls && rep.urls.length > 0 ? `
+                        <p class="small mb-2">
+                            <i class="fas fa-globe me-2"></i>
+                            <a href="${rep.urls[0]}" target="_blank">Official Website</a>
+                        </p>
+                    ` : ''}
+                    
+                    ${rep.address ? `
+                        <p class="small mb-0">
+                            <i class="fas fa-map-marker-alt me-2"></i>
+                            ${rep.address}
+                        </p>
+                    ` : ''}
+                </div>
+            </div>
+        </div>
+    `;
+    
+    return col;
+}
+
+function showError(message) {
+    const errorDiv = document.getElementById('error-message');
+    errorDiv.textContent = message;
+    errorDiv.classList.remove('d-none');
+}
+</script>
+{% endblock %}

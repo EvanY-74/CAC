@@ -1,0 +1,196 @@
+{% extends "base.html" %}
+
+{% block title %}Find Polling Locations - MyNCRep{% endblock %}
+
+{% block head %}
+<!-- Google Maps API -->
+<script src="https://maps.googleapis.com/maps/api/js?key={{ config.GOOGLE_MAPS_API_KEY or 'your_api_key' }}&libraries=places" defer></script>
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row mb-4">
+        <div class="col">
+            <h1>
+                <i class="fas fa-map-marker-alt text-primary me-2"></i>
+                Find Your Polling Locations
+            </h1>
+            <p class="lead">
+                Enter your address to find nearby polling places and early voting sites.
+            </p>
+        </div>
+    </div>
+
+    <div class="row">
+        <!-- Search Panel -->
+        <div class="col-lg-4">
+            <div class="card sticky-top" style="top: 20px;">
+                <div class="card-header">
+                    <h5 class="mb-0">
+                        <i class="fas fa-search me-2"></i>
+                        Search for Polling Locations
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <!-- Address Input -->
+                    <div class="mb-3">
+                        <label class="form-label">Your Address</label>
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="address-input" 
+                                   placeholder="Enter your full address in North Carolina">
+                            <button class="btn btn-primary" type="button" id="search-btn">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </div>
+                        <small class="form-text text-muted">
+                            Include street address, city, and state for best results
+                        </small>
+                    </div>
+
+                    <!-- Use Current Location -->
+                    <div class="mb-3">
+                        <button class="btn btn-outline-primary w-100" id="location-btn">
+                            <i class="fas fa-location-arrow me-2"></i>
+                            Use My Current Location
+                        </button>
+                    </div>
+
+                    <!-- Loading Indicator -->
+                    <div id="loading" class="text-center d-none">
+                        <div class="spinner-border text-primary" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                        <p class="mt-2">Finding your polling locations...</p>
+                    </div>
+
+                    <!-- Results -->
+                    <div id="results" class="d-none">
+                        <h6><i class="fas fa-list me-2"></i>Polling Locations</h6>
+                        <div id="polling-locations"></div>
+                        
+                        <h6 class="mt-4"><i class="fas fa-clock me-2"></i>Early Voting Sites</h6>
+                        <div id="early-voting-sites"></div>
+                    </div>
+
+                    <!-- Error Message -->
+                    <div id="error-message" class="alert alert-danger d-none"></div>
+                </div>
+            </div>
+
+            <!-- Information Card -->
+            <div class="card mt-3">
+                <div class="card-header">
+                    <h6 class="mb-0">
+                        <i class="fas fa-info-circle text-info me-2"></i>
+                        Polling Location Tips
+                    </h6>
+                </div>
+                <div class="card-body">
+                    <ul class="small mb-0">
+                        <li>Election Day: Vote at your assigned polling place</li>
+                        <li>Early Voting: Vote at any early voting site in your county</li>
+                        <li>Polls are typically open 6:30 AM - 7:30 PM</li>
+                        <li>Bring photo ID or be prepared to sign reasonable impediment declaration</li>
+                        <li>Check polling hours as they may vary by location</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Map Panel -->
+        <div class="col-lg-8">
+            <div class="card">
+                <div class="card-body p-0">
+                    <div id="map" style="height: 600px; width: 100%;"></div>
+                </div>
+            </div>
+            
+            <!-- Map Instructions -->
+            <div class="card mt-3">
+                <div class="card-body">
+                    <div class="row text-center">
+                        <div class="col-md-3">
+                            <i class="fas fa-map-marker-alt text-primary fa-2x mb-2"></i>
+                            <h6>Election Day Sites</h6>
+                            <small>Your assigned polling place</small>
+                        </div>
+                        <div class="col-md-3">
+                            <i class="fas fa-clock text-success fa-2x mb-2"></i>
+                            <h6>Early Voting Sites</h6>
+                            <small>Any location during early voting</small>
+                        </div>
+                        <div class="col-md-3">
+                            <i class="fas fa-user text-info fa-2x mb-2"></i>
+                            <h6>Your Location</h6>
+                            <small>Your entered address</small>
+                        </div>
+                        <div class="col-md-3">
+                            <i class="fas fa-route text-warning fa-2x mb-2"></i>
+                            <h6>Directions</h6>
+                            <small>Click markers for directions</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Additional Information -->
+    <div class="row mt-4">
+        <div class="col-lg-6">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0">
+                        <i class="fas fa-calendar-alt text-primary me-2"></i>
+                        Voting Schedule
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <h6>Election Day</h6>
+                            <p class="small">
+                                <strong>Hours:</strong> 6:30 AM - 7:30 PM<br>
+                                <strong>Location:</strong> Assigned polling place only
+                            </p>
+                        </div>
+                        <div class="col-sm-6">
+                            <h6>Early Voting</h6>
+                            <p class="small">
+                                <strong>Period:</strong> 17 days before election<br>
+                                <strong>Location:</strong> Any early voting site in county
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0">
+                        <i class="fas fa-wheelchair text-primary me-2"></i>
+                        Accessibility
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <p class="small">
+                        All polling locations are required to be accessible to voters with disabilities. 
+                        If you need accommodations or assistance:
+                    </p>
+                    <ul class="small mb-0">
+                        <li>Curbside voting is available</li>
+                        <li>Audio ballots for visually impaired voters</li>
+                        <li>Assistance from poll workers or person of your choice</li>
+                        <li>Contact your county board of elections for specific needs</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/map.js') }}"></script>
+{% endblock %}

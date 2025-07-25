@@ -1,0 +1,152 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container">
+    <!-- Hero Section -->
+    <div class="row mb-5">
+        <div class="col-lg-8 mx-auto text-center">
+            <h1 class="display-4 mb-4">
+                <i class="fas fa-vote-yea text-primary me-3"></i>
+                Welcome to MyNCRep
+            </h1>
+            <p class="lead mb-4">
+                Your comprehensive guide to voting and civic engagement in North Carolina. 
+                Get the information you need to make informed decisions and participate in democracy.
+            </p>
+            
+            {% if next_election %}
+            <div class="alert alert-info">
+                <i class="fas fa-calendar-alt me-2"></i>
+                <strong>Upcoming Election:</strong> {{ next_election.name }} 
+                {% if days_until_election is not none %}
+                    - {{ days_until_election }} days away
+                {% endif %}
+            </div>
+            {% endif %}
+            
+            <a href="{{ url_for('quiz') }}" class="btn btn-primary btn-lg me-3">
+                <i class="fas fa-play me-2"></i>Start Eligibility Quiz
+            </a>
+            <a href="{{ url_for('voting_info') }}" class="btn btn-outline-primary btn-lg">
+                <i class="fas fa-info-circle me-2"></i>Learn How to Vote
+            </a>
+        </div>
+    </div>
+
+    <!-- Features Grid -->
+    <div class="row g-4 mb-5">
+        <div class="col-md-6 col-lg-4">
+            <div class="card h-100">
+                <div class="card-body text-center">
+                    <i class="fas fa-clipboard-question fa-3x text-primary mb-3"></i>
+                    <h5 class="card-title">Eligibility Quiz</h5>
+                    <p class="card-text">
+                        Quick assessment to determine your voting eligibility and get personalized guidance.
+                    </p>
+                    <a href="{{ url_for('quiz') }}" class="btn btn-primary">Take Quiz</a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-6 col-lg-4">
+            <div class="card h-100">
+                <div class="card-body text-center">
+                    <i class="fas fa-users fa-3x text-primary mb-3"></i>
+                    <h5 class="card-title">Candidate Information</h5>
+                    <p class="card-text">
+                        Learn about candidates' stances on key issues affecting North Carolina.
+                    </p>
+                    <a href="{{ url_for('candidates') }}" class="btn btn-primary">View Candidates</a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-6 col-lg-4">
+            <div class="card h-100">
+                <div class="card-body text-center">
+                    <i class="fas fa-info-circle fa-3x text-primary mb-3"></i>
+                    <h5 class="card-title">Voting Guide</h5>
+                    <p class="card-text">
+                        Step-by-step instructions on registration, requirements, and the voting process.
+                    </p>
+                    <a href="{{ url_for('voting_info') }}" class="btn btn-primary">Get Info</a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-6 col-lg-4">
+            <div class="card h-100">
+                <div class="card-body text-center">
+                    <i class="fas fa-map-marker-alt fa-3x text-primary mb-3"></i>
+                    <h5 class="card-title">Find Polling Sites</h5>
+                    <p class="card-text">
+                        Interactive map to locate your nearest polling locations and early voting sites.
+                    </p>
+                    <a href="{{ url_for('polling_map') }}" class="btn btn-primary">Find Locations</a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-6 col-lg-4">
+            <div class="card h-100">
+                <div class="card-body text-center">
+                    <i class="fas fa-user-tie fa-3x text-primary mb-3"></i>
+                    <h5 class="card-title">My Representatives</h5>
+                    <p class="card-text">
+                        Find your local, state, and federal representatives based on your address.
+                    </p>
+                    <a href="{{ url_for('representatives') }}" class="btn btn-primary">Find Reps</a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-6 col-lg-4">
+            <div class="card h-100">
+                <div class="card-body text-center">
+                    <i class="fas fa-book fa-3x text-primary mb-3"></i>
+                    <h5 class="card-title">Government Glossary</h5>
+                    <p class="card-text">
+                        Learn essential government terms and concepts to better understand the political process.
+                    </p>
+                    <a href="{{ url_for('glossary') }}" class="btn btn-primary">Browse Terms</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Key Information Section -->
+    <div class="row">
+        <div class="col-lg-8 mx-auto">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="mb-0">
+                        <i class="fas fa-exclamation-triangle text-warning me-2"></i>
+                        Important Voter Information for North Carolina
+                    </h4>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h6><i class="fas fa-id-card me-2"></i>Voter ID Requirements</h6>
+                            <p class="small">Photo ID is required to vote in North Carolina, with exceptions for reasonable impediment.</p>
+                        </div>
+                        <div class="col-md-6">
+                            <h6><i class="fas fa-calendar me-2"></i>Registration Deadline</h6>
+                            <p class="small">You must register to vote at least 25 days before an election.</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h6><i class="fas fa-clock me-2"></i>Early Voting</h6>
+                            <p class="small">Early voting begins 17 days before Election Day and ends 3 days before.</p>
+                        </div>
+                        <div class="col-md-6">
+                            <h6><i class="fas fa-envelope me-2"></i>Absentee Voting</h6>
+                            <p class="small">Absentee voting is available for qualifying reasons or for all voters 65 and older.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
