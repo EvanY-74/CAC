@@ -9,4 +9,4 @@
     - You should see **(venv)** before the working directory showing that your virtual environment is activated
 4. Install all the dependencies: `pip install .`
     - This installs all the dependencies in _pyproject.toml_ to your local files. They are stored in `venv\Lib\site-packages`.
-5. Run the file: `python main.py` 
+5. Run the file: `python main.py`
