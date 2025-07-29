@@ -1,5 +1,5 @@
 
-# HOW TO START CODING
+# How to start coding
 1. Clone GitHub repository (if you haven't done so already)
     - Press the **Code** button then copy the _URL_
 2. Create a virtual environment with: `python -m venv venv`
