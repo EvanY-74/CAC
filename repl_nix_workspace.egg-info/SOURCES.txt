@@ -1,3 +1,4 @@
+README.md
 pyproject.toml
 repl_nix_workspace.egg-info/PKG-INFO
 repl_nix_workspace.egg-info/SOURCES.txt
