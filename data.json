@@ -1,0 +1,16 @@
+{
+    "candidates": [
+        {
+            "id": 1,
+            "name": "John Doe",
+            "party": "Democrat",
+            "stance": "Pro-Environment"
+        },
+        {
+            "id": 2,
+            "name": "Jane Smith",
+            "party": "Republican",
+            "stance": "Pro-Business"
+        }
+    ]
+}

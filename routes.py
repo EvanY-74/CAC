@@ -1,6 +1,6 @@
 from flask import render_template, request, redirect, url_for, flash, jsonify
-from app import app, db
-from models import GovTerm, Candidate, CandidateStance, Election
+from app import app
+# from models import GovTerm, Candidate, CandidateStance, Election
 from api_services import get_polling_locations, get_representatives, get_elections
 import logging
 from datetime import datetime, date
@@ -9,10 +9,12 @@ from datetime import datetime, date
 def index():
     """Home page with overview of features"""
     # Get next upcoming election
-    next_election = Election.query.filter(
-        Election.election_date >= date.today(),
-        Election.is_active == True
-    ).order_by(Election.election_date.asc()).first()
+    # next_election = Election.query.filter(
+    #     Election.election_date >= date.today(),
+    #     Election.is_active == True
+    # ).order_by(Election.election_date.asc()).first()
+    # next_election = date.today() # Placeholder for actual election data retrieval
+    next_election = False # Placeholder for actual election data retrieval
     
     return render_template('index.html', next_election=next_election)
 
@@ -57,11 +59,11 @@ def candidates():
     election_type = session.get('election_type', 'all')
     
     # Filter candidates based on election type if specified
-    if election_type == 'all':
-        candidates_list = Candidate.query.all()
-    else:
-        # This would need more sophisticated filtering based on user location
-        candidates_list = Candidate.query.filter_by(office=election_type).all()
+    # if election_type == 'all':
+    #     candidates_list = Candidate.query.all()
+    # else:
+    #     # This would need more sophisticated filtering based on user location
+    #     candidates_list = Candidate.query.filter_by(office=election_type).all()
     
     # Key issues to display
     key_issues = [
@@ -190,16 +192,16 @@ def populate_terms():
     db.session.commit()
     return f"Populated {len(terms_data)} terms"
 
-@app.context_processor
-def inject_election_countdown():
-    """Inject election countdown into all templates"""
-    next_election = Election.query.filter(
-        Election.election_date >= date.today(),
-        Election.is_active == True
-    ).order_by(Election.election_date.asc()).first()
+# @app.context_processor
+# def inject_election_countdown():
+#     """Inject election countdown into all templates"""
+#     next_election = Election.query.filter(
+#         Election.election_date >= date.today(),
+#         Election.is_active == True
+#     ).order_by(Election.election_date.asc()).first()
     
-    days_until_election = None
-    if next_election:
-        days_until_election = (next_election.election_date - date.today()).days
+#     days_until_election = None
+#     if next_election:
+#         days_until_election = (next_election.election_date - date.today()).days
     
-    return dict(next_election=next_election, days_until_election=days_until_election)
+#     return dict(next_election=next_election, days_until_election=days_until_election)
