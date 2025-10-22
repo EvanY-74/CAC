@@ -208,6 +208,17 @@ footer {
     overflow: hidden;
 }
 
+/* red/blue/independent coloring */
+.party-badge[party="Democrat"] {
+    background-color: #1111FF !important;
+}
+.party-badge[party="Republican"] {
+    background-color: #CC0000 !important;
+}
+.party-badge /* other */ {
+    background-color: #676767 !important;
+}
+
 /* Modal enhancements */
 .modal-content {
     border: none;

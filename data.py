@@ -12,6 +12,22 @@ def get_data():
     except json.JSONDecodeError:
         print(f'Error: Could not decode JSON from "{DATA_PATH}". Check for valid JSON format.')
 
+
+def get_all_candidates(attributes = None):
+    """
+    Get specified attributes of the candidates
+    [name, party] -> [{name: "candidate 1", party: "party 1"}, {name: "candidate 2", party: "party 2"}]
+    if attributes is None, every attribute will be returned
+    """
+    if attributes is None:
+        return get_data()['candidates']
+
+    if type(attributes) is not list:
+        attributes = [attributes]
+
+    return [{key: candidate[key] for key in attributes if key in candidate} for candidate in get_data()['candidates']]
+
+
 def search_candidates(attribute, value, unique=True, case_sensitive=False):
     """Search candidates by attribute (most often id or name)"""
 
@@ -31,12 +47,3 @@ def search_candidates(attribute, value, unique=True, case_sensitive=False):
                 results.append(candidate)
 
     return results
-
-
-def get_candidates(attributes):
-    """Get specified attributes of the candidates"""
-
-    if type(attributes) is not list:
-        attributes = [attributes]
-
-    return [{key: candidate[key] for key in attributes if key in candidate} for candidate in get_data()['candidates']]
