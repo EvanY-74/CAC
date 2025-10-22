@@ -13,10 +13,10 @@
     - This will create your very own _venv_ folder where stuff like libraries and Scripts will go
 
 4. Activate it: `venv\Scripts\activate`
-    - You might need to run `Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope Process` if running scripts is disabled
+    - You might need to run `Set-ExecutionPolicy RemoteSigned -Scope CurrentUser -Force` if running scripts is disabled
     - You should see **(venv)** before the working directory showing that your virtual environment is activated
 
-5. Install all the dependencies: `poetry install`
+5. Install all the dependencies (one time thing): `poetry install`
     - This installs all the packages and dependencies in _pyproject.toml_ and _poetry.lock_ to your virtual environment. They are stored in `venv\Lib\site-packages`.
 
 6. Run the app: `python main.py`
@@ -25,3 +25,4 @@
 # DEVELOPMENT
 
 - If you want to add a new package, use `poetry add [package name]`
+- Other users will need to re-run `poetry install` in order to locally install the package on their computer
