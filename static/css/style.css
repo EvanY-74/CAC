@@ -135,6 +135,10 @@ footer {
     .lead {
         font-size: 1.1rem;
     }
+
+    #quick-nav {
+        display: none;
+    }
 }
 
 /* Print styles for voting information */
