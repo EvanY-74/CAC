@@ -71,9 +71,10 @@ def candidates():
         'Infrastructure', 'Public Safety', 'Social Issues'
     ]
     
-    return render_template('candidates.html', 
-                          candidates=candidates_list, 
-                          key_issues=key_issues)
+    return render_template('candidates.html')
+    # return render_template('candidates.html', 
+    #                       candidates=candidates_list, 
+    #                       key_issues=key_issues)
 
 @app.route('/voting-info')
 def voting_info():
