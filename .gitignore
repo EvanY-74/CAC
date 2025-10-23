@@ -2,7 +2,7 @@
 .vscode 
 
 # .env file (environment variables)
-# .env # keep this for now (for convenience))
+.env
 
 # package stuff
 venv/

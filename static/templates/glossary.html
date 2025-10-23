@@ -75,13 +75,13 @@
             </div>
 
             <!-- Terms by Letter -->
-            {% set current_letter = '' %}
+            {% set ns = namespace(current_letter='') %}
             {% for term in terms %}
                 {% set first_letter = term.term[0].upper() %}
-                {% if first_letter != current_letter %}
-                    {% set current_letter = first_letter %}
-                    <div class="anchor" id="letter-{{ current_letter }}"></div>
-                    <h3 class="text-primary mb-3 mt-4">{{ current_letter }}</h3>
+                {% if first_letter != ns.current_letter %}
+                    {% set ns.current_letter = first_letter %}
+                    <div class="anchor" id="letter-{{ ns.current_letter }}"></div>
+                    <h3 class="text-primary mb-3 mt-4">{{ ns.current_letter }}</h3>
                 {% endif %}
                 
                 <div class="card mb-3 term-card" data-term="{{ term.term.lower() }}" data-category="{{ term.category }}">

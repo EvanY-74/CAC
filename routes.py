@@ -139,15 +139,10 @@ def api_polling_locations():
 def glossary():
     """Government terms glossary"""
     # Get terms by category
-    categories = db.session.query(GovTerm.category).distinct().all()
-    categories = [cat[0] for cat in categories]
-    
-    selected_category = request.args.get('category', 'all')
-    
-    if selected_category == 'all':
-        terms = GovTerm.query.order_by(GovTerm.term).all()
-    else:
-        terms = GovTerm.query.filter_by(category=selected_category).order_by(GovTerm.term).all()
+
+    terms = data.read_file('glossary')
+    categories = []
+    selected_category = None
     
     return render_template('glossary.html', 
                           terms=terms, 

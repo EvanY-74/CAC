@@ -3,6 +3,7 @@ import os
 
 
 def read_file(json_file):
+    """Read .json any json file in data/"""
     try:
         with open(os.path.join('data', json_file + '.json'), 'r') as file:
             return json.load(file)
