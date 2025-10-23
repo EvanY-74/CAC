@@ -97,7 +97,7 @@
                             {% endif %}
                         </div>
                         {% if candidate.party %}
-                        <span class="badge bg-info">{{ candidate.party }}</span>
+                        <span class="badge bg-info party-badge" party="{{ candidate.party }}">{{ candidate.party }}</span>
                         {% endif %}
                     </div>
                 </div>
@@ -155,7 +155,7 @@
                         {% if candidate.party %}
                         <div class="row mb-3">
                             <div class="col-md-6">
-                                <strong>Party:</strong> <span class="badge bg-info">{{ candidate.party }}</span>
+                                <strong>Party:</strong> <span class="badge bg-info party-badge" party="{{ candidate.party }}">{{ candidate.party }}</span>
                             </div>
                         </div>
                         {% endif %}

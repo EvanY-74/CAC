@@ -1,9 +1,11 @@
 from flask import render_template, request, redirect, url_for, flash, jsonify
 from app import app
+
+import data
 # from models import GovTerm, Candidate, CandidateStance, Election
 from api_services import get_polling_locations, get_representatives, get_elections
 import logging
-from datetime import datetime, date
+# from datetime import datetime, date
 
 @app.route('/')
 def index():
@@ -55,8 +57,10 @@ def submit_quiz():
 @app.route('/candidates')
 def candidates():
     """Display candidate information and stances"""
-    from flask import session
-    election_type = session.get('election_type', 'all')
+
+    #* Previous code to get and filter candidates (delete later if for sure not useful)
+    # from flask import session
+    # election_type = session.get('election_type', 'all')
     
     # Filter candidates based on election type if specified
     # if election_type == 'all':
@@ -65,12 +69,16 @@ def candidates():
     #     # This would need more sophisticated filtering based on user location
     #     candidates_list = Candidate.query.filter_by(office=election_type).all()
     
+    #* Evan's code
+    candidates_list = data.get_all_candidates()
+
     # Key issues to display
     key_issues = [
         'Healthcare', 'Education', 'Economy', 'Environment', 
         'Infrastructure', 'Public Safety', 'Social Issues'
     ]
     
+    # return render_template('candidates.html')
     return render_template('candidates.html', 
                           candidates=candidates_list, 
                           key_issues=key_issues)

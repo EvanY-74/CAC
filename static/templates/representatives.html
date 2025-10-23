@@ -284,7 +284,7 @@ function createRepresentativeCard(rep) {
                     <div>
                         <h6 class="card-title mb-1">${rep.name}</h6>
                         <p class="text-primary small mb-1">${rep.office}</p>
-                        ${rep.party ? `<span class="badge bg-info">${rep.party}</span>` : ''}
+                        ${rep.party ? `<span class="badge bg-info party-badge" party="${rep.party}">${rep.party}</span>` : ''}
                     </div>
                 </div>
                 
