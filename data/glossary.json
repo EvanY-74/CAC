@@ -1,52 +1,52 @@
 [
-  {
-    "term": "Amendment",
-    "definition": "A change or addition to a constitution, law, or bill.",
-    "category": "Legislative Process"
-  },
-  {
-    "term": "Bill",
-    "definition": "A proposed law presented to a legislature for consideration.",
-    "category": "Legislative Process"
-  },
-  {
-    "term": "Caucus",
-    "definition": "A meeting of supporters or members of a specific political party or movement.",
-    "category": "Political Process"
-  },
-  {
-    "term": "Constituent",
-    "definition": "A voting member of a community or organization with the power to elect representatives.",
-    "category": "Representation"
-  },
-  {
-    "term": "Filibuster",
-    "definition": "A tactic used in the Senate to delay or prevent a vote on a bill by extending debate.",
-    "category": "Legislative Process"
-  },
-  {
-    "term": "General Election",
-    "definition": "The main election where voters choose between candidates from different parties.",
-    "category": "Elections"
-  },
-  {
-    "term": "Gerrymandering",
-    "definition": "The practice of drawing electoral district boundaries to favor one party or group.",
-    "category": "Elections"
-  },
-  {
-    "term": "House of Representatives",
-    "definition": "The lower chamber of the U.S. Congress, with members serving two-year terms representing districts.",
-    "category": "Legislative"
-  },
-  {
-    "term": "Primary Election",
-    "definition": "An election where voters choose candidates to represent their party in the general election.",
-    "category": "Elections"
-  },
-  {
-    "term": "Senate",
-    "definition": "The upper chamber of the U.S. Congress, with two senators from each state serving six-year terms.",
-    "category": "Legislative"
-  }
+    {
+        "term": "Amendment",
+        "definition": "A change or addition to a constitution, law, or bill.",
+        "category": "Legislative Process"
+    },
+    {
+        "term": "Bill",
+        "definition": "A proposed law presented to a legislature for consideration.",
+        "category": "Legislative Process"
+    },
+    {
+        "term": "Caucus",
+        "definition": "A meeting of supporters or members of a specific political party or movement.",
+        "category": "Political Process"
+    },
+    {
+        "term": "Constituent",
+        "definition": "A voting member of a community or organization with the power to elect representatives.",
+        "category": "Representation"
+    },
+    {
+        "term": "Filibuster",
+        "definition": "A tactic used in the Senate to delay or prevent a vote on a bill by extending debate.",
+        "category": "Legislative Process"
+    },
+    {
+        "term": "General Election",
+        "definition": "The main election where voters choose between candidates from different parties.",
+        "category": "Elections"
+    },
+    {
+        "term": "Gerrymandering",
+        "definition": "The practice of drawing electoral district boundaries to favor one party or group.",
+        "category": "Elections"
+    },
+    {
+        "term": "House of Representatives",
+        "definition": "The lower chamber of the U.S. Congress, with members serving two-year terms representing districts.",
+        "category": "Legislative"
+    },
+    {
+        "term": "Primary Election",
+        "definition": "An election where voters choose candidates to represent their party in the general election.",
+        "category": "Elections"
+    },
+    {
+        "term": "Senate",
+        "definition": "The upper chamber of the U.S. Congress, with two senators from each state serving six-year terms.",
+        "category": "Legislative"
+    }
 ]
