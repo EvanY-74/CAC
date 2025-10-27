@@ -136,13 +136,17 @@ def api_polling_locations():
         return jsonify({'error': 'Unable to fetch polling locations'}), 500
 
 @app.route('/glossary')
+@app.route('/glossary')
 def glossary():
     """Government terms glossary"""
     # Get terms by category
-
     terms = data.read_file('glossary')
-    categories = []
-    selected_category = None
+    
+    categories = sorted(list(set(term['category'] for term in terms)))
+    selected_category = request.args.get('category')
+    
+    if selected_category:
+        terms = [term for term in terms if term['category'] == selected_category]
     
     return render_template('glossary.html', 
                           terms=terms, 
