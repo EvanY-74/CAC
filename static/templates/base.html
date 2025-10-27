@@ -30,7 +30,7 @@
             </button>
             
             <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav me-auto">
+                <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
                         <a class="nav-link" href="{{ url_for('index') }}">
                             <i class="fas fa-home me-1"></i>Home
@@ -66,17 +66,19 @@
                             <i class="fas fa-book me-1"></i>Glossary
                         </a>
                     </li>
+                    
+                    <!-- Election Countdown -->
+                    {% if next_election and days_until_election is not none %}
+                    <li class="nav-item">
+                        <span class="navbar-text">
+                            <i class="fas fa-calendar-alt me-1"></i>
+                            <span class="badge bg-warning text-dark">
+                                {{ days_until_election }} days until {{ next_election.name }}
+                            </span>
+                        </span>
+                    </li>
+                    {% endif %}
                 </ul>
-                
-                <!-- Election Countdown -->
-                {% if next_election and days_until_election is not none %}
-                <div class="navbar-text">
-                    <i class="fas fa-calendar-alt me-1"></i>
-                    <span class="badge bg-warning text-dark">
-                        {{ days_until_election }} days until {{ next_election.name }}
-                    </span>
-                </div>
-                {% endif %}
             </div>
         </div>
     </nav>
