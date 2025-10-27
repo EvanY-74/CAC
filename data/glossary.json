@@ -1,28 +1,88 @@
 [
     {
+        "term": "Absentee Ballot",
+        "definition": "A ballot submitted by mail or drop box by a voter who cannot be physically present at their polling place on Election Day.",
+        "category": "Voting Process"
+    },
+    {
         "term": "Amendment",
         "definition": "A change or addition to a constitution, law, or bill.",
-        "category": "Legislative Process"
+        "category": "Legislative"
+    },
+    {
+        "term": "Ballot",
+        "definition": "The official document, paper, or digital form used by voters to make their choices in an election.",
+        "category": "Voting Process"
     },
     {
         "term": "Bill",
         "definition": "A proposed law presented to a legislature for consideration.",
-        "category": "Legislative Process"
+        "category": "Legislative"
+    },
+    {
+        "term": "Campaign",
+        "definition": "An organized effort by a candidate or political group to win an election.",
+        "category": "Elections"
+    },
+    {
+        "term": "Candidate",
+        "definition": "A person who seeks election to a public office.",
+        "category": "Elections"
     },
     {
         "term": "Caucus",
-        "definition": "A meeting of supporters or members of a specific political party or movement.",
-        "category": "Political Process"
+        "definition": "A meeting of members of a political party to select candidates or decide on policy.",
+        "category": "Political"
+    },
+    {
+        "term": "Census",
+        "definition": "A population count conducted every ten years in the U.S. that affects representation and funding.",
+        "category": "Government Structure"
     },
     {
         "term": "Constituent",
-        "definition": "A voting member of a community or organization with the power to elect representatives.",
+        "definition": "A person who lives in an area represented by an elected official.",
         "category": "Representation"
     },
     {
+        "term": "Constitution",
+        "definition": "The fundamental set of laws and principles that define a government's structure and powers.",
+        "category": "Civic Principles"
+    },
+    {
+        "term": "Debate",
+        "definition": "A formal discussion between candidates or parties to share their views and persuade voters.",
+        "category": "Elections"
+    },
+    {
+        "term": "Democracy",
+        "definition": "A system of government in which citizens hold the power to make decisions through voting.",
+        "category": "Civic Principles"
+    },
+    {
+        "term": "District",
+        "definition": "A geographic area represented by a specific elected official, such as a member of Congress.",
+        "category": "Government Structure"
+    },
+    {
+        "term": "Due Process",
+        "definition": "The legal requirement that the government must respect all rights owed to a person under the law.",
+        "category": "Judicial"
+    },
+    {
+        "term": "Electoral College",
+        "definition": "The group of representatives who formally cast votes for President and Vice President based on state results.",
+        "category": "Elections"
+    },
+    {
+        "term": "Executive Order",
+        "definition": "A directive issued by the President that manages operations of the federal government.",
+        "category": "Executive"
+    },
+    {
         "term": "Filibuster",
-        "definition": "A tactic used in the Senate to delay or prevent a vote on a bill by extending debate.",
-        "category": "Legislative Process"
+        "definition": "A tactic used in the Senate to delay or block a vote on a bill by extending debate.",
+        "category": "Legislative"
     },
     {
         "term": "General Election",
@@ -31,7 +91,7 @@
     },
     {
         "term": "Gerrymandering",
-        "definition": "The practice of drawing electoral district boundaries to favor one party or group.",
+        "definition": "The practice of drawing voting district boundaries to favor one party or group.",
         "category": "Elections"
     },
     {
@@ -40,13 +100,168 @@
         "category": "Legislative"
     },
     {
+        "term": "Impeachment",
+        "definition": "The process by which a legislative body brings charges against a government official for misconduct.",
+        "category": "Legislative"
+    },
+    {
+        "term": "Incumbent",
+        "definition": "A person currently holding a political office who is running for reelection.",
+        "category": "Elections"
+    },
+    {
+        "term": "Independent Voter",
+        "definition": "A voter who does not align with or register under any political party.",
+        "category": "Political Behavior"
+    },
+    {
+        "term": "Judicial Review",
+        "definition": "The power of courts to determine whether laws or actions of government are constitutional.",
+        "category": "Judicial"
+    },
+    {
+        "term": "Lobbying",
+        "definition": "The act of trying to influence decisions made by government officials, often by interest groups or organizations.",
+        "category": "Political"
+    },
+    {
+        "term": "Majority Rule",
+        "definition": "The principle that the decision supported by more than half of voters or representatives wins.",
+        "category": "Civic Principles"
+    },
+    {
+        "term": "Midterm Election",
+        "definition": "An election held halfway through a president's term, where voters choose members of Congress and local officials.",
+        "category": "Elections"
+    },
+    {
+        "term": "Nomination",
+        "definition": "The process by which a political party selects its candidate for election to public office.",
+        "category": "Elections"
+    },
+    {
+        "term": "Nonpartisan",
+        "definition": "Not affiliated with or influenced by any political party.",
+        "category": "Political Behavior"
+    },
+    {
+        "term": "Oath of Office",
+        "definition": "A formal promise made by an official to carry out their duties and uphold the Constitution.",
+        "category": "Civic Principles"
+    },
+    {
+        "term": "PAC (Political Action Committee)",
+        "definition": "An organization that raises and spends money to influence elections or legislation.",
+        "category": "Political"
+    },
+    {
+        "term": "Polling Place",
+        "definition": "The physical location where voters go to cast their ballots on Election Day.",
+        "category": "Voting Process"
+    },
+    {
         "term": "Primary Election",
-        "definition": "An election where voters choose candidates to represent their party in the general election.",
+        "definition": "An election where voters choose which candidates will represent their party in the general election.",
+        "category": "Elections"
+    },
+    {
+        "term": "Provisional Ballot",
+        "definition": "A ballot used when there is uncertainty about a voter's eligibility, counted once eligibility is confirmed.",
+        "category": "Voting Process"
+    },
+    {
+        "term": "Quorum",
+        "definition": "The minimum number of members required for a legislative body to conduct business.",
+        "category": "Legislative"
+    },
+    {
+        "term": "Recall Election",
+        "definition": "An election that allows voters to remove an elected official from office before their term ends.",
+        "category": "Elections"
+    },
+    {
+        "term": "Referendum",
+        "definition": "A direct vote by citizens on a specific law or issue.",
+        "category": "Elections"
+    },
+    {
+        "term": "Registration",
+        "definition": "The process of signing up to be eligible to vote in an election.",
+        "category": "Voting Process"
+    },
+    {
+        "term": "Runoff Election",
+        "definition": "A second election held when no candidate receives a majority of votes in the first round.",
         "category": "Elections"
     },
     {
         "term": "Senate",
         "definition": "The upper chamber of the U.S. Congress, with two senators from each state serving six-year terms.",
         "category": "Legislative"
+    },
+    {
+        "term": "Swing State",
+        "definition": "A state where support for major political parties is close, making it important in presidential elections.",
+        "category": "Elections"
+    },
+    {
+        "term": "Term Limit",
+        "definition": "A legal restriction on how many times a person can be elected to the same office.",
+        "category": "Government Structure"
+    },
+    {
+        "term": "Treaty",
+        "definition": "A formal agreement between two or more countries, ratified by the Senate in the U.S.",
+        "category": "Executive"
+    },
+    {
+        "term": "Turnout",
+        "definition": "The percentage of eligible voters who actually cast ballots in an election.",
+        "category": "Voting Process"
+    },
+    {
+        "term": "Unanimous Vote",
+        "definition": "A decision where all members or voters are in complete agreement, with no one opposing.",
+        "category": "Voting Process"
+    },
+    {
+        "term": "Veto",
+        "definition": "The power of the President or governor to reject a bill passed by the legislature.",
+        "category": "Executive"
+    },
+    {
+        "term": "Voter ID",
+        "definition": "A form of identification some states require to verify a voter's identity at the polls.",
+        "category": "Voting Process"
+    },
+    {
+        "term": "Voter Suppression",
+        "definition": "Any action or policy that makes it harder for certain groups of people to vote.",
+        "category": "Voting Process"
+    },
+    {
+        "term": "Voting Rights Act",
+        "definition": "A landmark 1965 law that outlawed racial discrimination in voting.",
+        "category": "Civic Principles"
+    },
+    {
+        "term": "Writ of Habeas Corpus",
+        "definition": "A court order requiring that a person under arrest be brought before a judge to determine if their detention is lawful.",
+        "category": "Judicial"
+    },
+    {
+        "term": "Xenophobia",
+        "definition": "Fear or hatred of foreigners, which can influence political movements and policies.",
+        "category": "Political"
+    },
+    {
+        "term": "Yellow Journalism",
+        "definition": "Sensational or exaggerated news reporting meant to influence public opinion or sell papers.",
+        "category": "Media"
+    },
+    {
+        "term": "Zero-Sum Politics",
+        "definition": "A belief that one side's gain in politics always means the other's loss, discouraging compromise.",
+        "category": "Political Behavior"
     }
 ]
