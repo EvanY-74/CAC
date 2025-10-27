@@ -136,7 +136,6 @@ def api_polling_locations():
         return jsonify({'error': 'Unable to fetch polling locations'}), 500
 
 @app.route('/glossary')
-@app.route('/glossary')
 def glossary():
     """Government terms glossary"""
     # Get terms by category
