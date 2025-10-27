@@ -58,18 +58,6 @@ def submit_quiz():
 def candidates():
     """Display candidate information and stances"""
 
-    #* Previous code to get and filter candidates (delete later if for sure not useful)
-    # from flask import session
-    # election_type = session.get('election_type', 'all')
-    
-    # Filter candidates based on election type if specified
-    # if election_type == 'all':
-    #     candidates_list = Candidate.query.all()
-    # else:
-    #     # This would need more sophisticated filtering based on user location
-    #     candidates_list = Candidate.query.filter_by(office=election_type).all()
-    
-    #* Evan's code
     candidates_list = data.get_all_candidates()
 
     # Key issues to display
@@ -121,21 +109,20 @@ def polling_map():
     """Interactive map showing polling locations"""
     return render_template('polling_map.html')
 
-@app.route('/api/polling-locations')
-def api_polling_locations():
-    """API endpoint to get polling locations based on address"""
-    address = request.args.get('address')
-    if not address:
-        return jsonify({'error': 'Address is required'}), 400
+# @app.route('/api/polling-locations')
+# def api_polling_locations():
+#     """API endpoint to get polling locations based on address"""
+#     address = request.args.get('address')
+#     if not address:
+#         return jsonify({'error': 'Address is required'}), 400
     
-    try:
-        locations = get_polling_locations(address)
-        return jsonify(locations)
-    except Exception as e:
-        logging.error(f"Error fetching polling locations: {e}")
-        return jsonify({'error': 'Unable to fetch polling locations'}), 500
+#     try:
+#         locations = get_polling_locations(address)
+#         return jsonify(locations)
+#     except Exception as e:
+#         logging.error(f"Error fetching polling locations: {e}")
+#         return jsonify({'error': 'Unable to fetch polling locations'}), 500
 
-@app.route('/glossary')
 @app.route('/glossary')
 def glossary():
     """Government terms glossary"""
@@ -158,46 +145,20 @@ def representatives():
     """Find local representatives based on address"""
     return render_template('representatives.html')
 
-@app.route('/api/representatives')
-def api_representatives():
-    """API endpoint to get representatives based on address"""
-    address = request.args.get('address')
-    if not address:
-        return jsonify({'error': 'Address is required'}), 400
+# @app.route('/api/representatives')
+# def api_representatives():
+#     """API endpoint to get representatives based on address"""
+#     address = request.args.get('address')
+#     if not address:
+#         return jsonify({'error': 'Address is required'}), 400
     
-    try:
-        representatives = get_representatives(address)
-        return jsonify(representatives)
-    except Exception as e:
-        logging.error(f"Error fetching representatives: {e}")
-        return jsonify({'error': 'Unable to fetch representatives'}), 500
+#     try:
+#         representatives = get_representatives(address)
+#         return jsonify(representatives)
+#     except Exception as e:
+#         logging.error(f"Error fetching representatives: {e}")
+#         return jsonify({'error': 'Unable to fetch representatives'}), 500
 
-@app.route('/admin/populate-terms')
-def populate_terms():
-    """Admin route to populate government terms (for development)"""
-    # Only populate if terms don't exist
-    if GovTerm.query.count() > 0:
-        return "Terms already populated"
-    
-    terms_data = [
-        {"term": "House of Representatives", "definition": "The lower chamber of the U.S. Congress, with members serving two-year terms representing districts.", "category": "Legislative"},
-        {"term": "Senate", "definition": "The upper chamber of the U.S. Congress, with two senators from each state serving six-year terms.", "category": "Legislative"},
-        {"term": "Bill", "definition": "A proposed law presented to a legislature for consideration.", "category": "Legislative Process"},
-        {"term": "Amendment", "definition": "A change or addition to a constitution, law, or bill.", "category": "Legislative Process"},
-        {"term": "Filibuster", "definition": "A tactic used in the Senate to delay or prevent a vote on a bill by extending debate.", "category": "Legislative Process"},
-        {"term": "Gerrymandering", "definition": "The practice of drawing electoral district boundaries to favor one party or group.", "category": "Elections"},
-        {"term": "Constituent", "definition": "A voting member of a community or organization with the power to elect representatives.", "category": "Representation"},
-        {"term": "Caucus", "definition": "A meeting of supporters or members of a specific political party or movement.", "category": "Political Process"},
-        {"term": "Primary Election", "definition": "An election where voters choose candidates to represent their party in the general election.", "category": "Elections"},
-        {"term": "General Election", "definition": "The main election where voters choose between candidates from different parties.", "category": "Elections"}
-    ]
-    
-    for term_data in terms_data:
-        term = GovTerm(**term_data)
-        db.session.add(term)
-    
-    db.session.commit()
-    return f"Populated {len(terms_data)} terms"
 
 # @app.context_processor
 # def inject_election_countdown():
