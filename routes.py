@@ -145,20 +145,6 @@ def representatives():
     """Find local representatives based on address"""
     return render_template('representatives.html')
 
-# @app.route('/api/representatives')
-# def api_representatives():
-#     """API endpoint to get representatives based on address"""
-#     address = request.args.get('address')
-#     if not address:
-#         return jsonify({'error': 'Address is required'}), 400
-    
-#     try:
-#         representatives = get_representatives(address)
-#         return jsonify(representatives)
-#     except Exception as e:
-#         logging.error(f"Error fetching representatives: {e}")
-#         return jsonify({'error': 'Unable to fetch representatives'}), 500
-
 
 # @app.context_processor
 # def inject_election_countdown():
