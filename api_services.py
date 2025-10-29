@@ -4,7 +4,7 @@ import logging
 from typing import Dict, List, Any
 
 # API Keys from environment variables
-GOOGLE_CIVICS_API_KEY = os.getenv('GOOGLE_CIVICS_API_KEY', 'your_google_civics_api_key')
+GOOGLE_CIVICS_API_KEY = os.getenv('CIVICS_API_KEY', 'your_google_civics_api_key')
 GOOGLE_MAPS_API_KEY = os.getenv('GOOGLE_MAPS_API_KEY', 'your_google_maps_api_key')
 
 def get_polling_locations(address: str) -> Dict[str, Any]:

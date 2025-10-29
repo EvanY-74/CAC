@@ -109,19 +109,19 @@ def polling_map():
     """Interactive map showing polling locations"""
     return render_template('polling_map.html')
 
-# @app.route('/api/polling-locations')
-# def api_polling_locations():
-#     """API endpoint to get polling locations based on address"""
-#     address = request.args.get('address')
-#     if not address:
-#         return jsonify({'error': 'Address is required'}), 400
+@app.route('/api/polling-locations')
+def api_polling_locations():
+    """API endpoint to get polling locations based on address"""
+    address = request.args.get('address')
+    if not address:
+        return jsonify({'error': 'Address is required'}), 400
     
-#     try:
-#         locations = get_polling_locations(address)
-#         return jsonify(locations)
-#     except Exception as e:
-#         logging.error(f"Error fetching polling locations: {e}")
-#         return jsonify({'error': 'Unable to fetch polling locations'}), 500
+    try:
+        locations = get_polling_locations(address)
+        return jsonify(locations)
+    except Exception as e:
+        logging.error(f"Error fetching polling locations: {e}")
+        return jsonify({'error': 'Unable to fetch polling locations'}), 500
 
 GLOSSARY_TERMS = data.read_file('glossary')
 @app.route('/glossary')
