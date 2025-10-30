@@ -10,32 +10,32 @@ let directionsRenderer;
 // Initialize map when page loads
 function initMap() {
     // Default to North Carolina center
-    const ncCenter = { lat: 35.7596, lng: -79.0193 };
+    // const ncCenter = { lat: 35.7596, lng: -79.0193 };
     
-    map = new google.maps.Map(document.getElementById('map'), {
-        zoom: 8,
-        center: ncCenter,
-        mapTypeControl: true,
-        mapTypeControlOptions: {
-            style: google.maps.MapTypeControlStyle.HORIZONTAL_BAR,
-            position: google.maps.ControlPosition.TOP_CENTER,
-        },
-        zoomControl: true,
-        zoomControlOptions: {
-            position: google.maps.ControlPosition.RIGHT_CENTER,
-        },
-        scaleControl: true,
-        streetViewControl: true,
-        streetViewControlOptions: {
-            position: google.maps.ControlPosition.RIGHT_TOP,
-        },
-        fullscreenControl: false,
-    });
+    // map = new google.maps.Map(document.getElementById('map'), {
+    //     zoom: 8,
+    //     center: ncCenter,
+    //     mapTypeControl: true,
+    //     mapTypeControlOptions: {
+    //         style: google.maps.MapTypeControlStyle.HORIZONTAL_BAR,
+    //         position: google.maps.ControlPosition.TOP_CENTER,
+    //     },
+    //     zoomControl: true,
+    //     zoomControlOptions: {
+    //         position: google.maps.ControlPosition.RIGHT_CENTER,
+    //     },
+    //     scaleControl: true,
+    //     streetViewControl: true,
+    //     streetViewControlOptions: {
+    //         position: google.maps.ControlPosition.RIGHT_TOP,
+    //     },
+    //     fullscreenControl: false,
+    // });
     
-    geocoder = new google.maps.Geocoder();
-    directionsService = new google.maps.DirectionsService();
-    directionsRenderer = new google.maps.DirectionsRenderer();
-    directionsRenderer.setMap(map);
+    // geocoder = new google.maps.Geocoder();
+    // directionsService = new google.maps.DirectionsService();
+    // directionsRenderer = new google.maps.DirectionsRenderer();
+    // directionsRenderer.setMap(map);
     
     initializeEventListeners();
 }
@@ -99,6 +99,7 @@ async function handleCurrentLocation() {
     
     try {
         const position = await MyNCRep.getCurrentLocation();
+        console.log(position);
         
         // Reverse geocode to get address
         const address = await reverseGeocode(position);
@@ -108,6 +109,7 @@ async function handleCurrentLocation() {
         
         // Get polling locations
         const pollingData = await MyNCRep.makeAPIRequest(`/api/polling-locations?address=${encodeURIComponent(address)}`);
+        console.log(pollingData);
         
         if (pollingData.success) {
             displayPollingLocations(pollingData, position);
@@ -397,6 +399,6 @@ function showError(message) {
 window.initMap = initMap;
 
 // Initialize map if Google Maps is already loaded
-if (typeof google !== 'undefined' && google.maps) {
+// if (typeof google !== 'undefined' && google.maps) {
     initMap();
-}
+// }
