@@ -133,9 +133,11 @@ def glossary():
     
     if selected_category:
         terms = [term for term in GLOSSARY_TERMS if term['category'] == selected_category]
+    else:
+        terms = GLOSSARY_TERMS  # Add this line to show all terms when no category is selected
     
     return render_template('glossary.html', 
-                          terms=GLOSSARY_TERMS, 
+                          terms=terms,  # Change this from GLOSSARY_TERMS to terms
                           categories=categories,
                           selected_category=selected_category)
 
@@ -143,18 +145,3 @@ def glossary():
 def representatives():
     """Find local representatives based on address"""
     return render_template('representatives.html')
-
-
-# @app.context_processor
-# def inject_election_countdown():
-#     """Inject election countdown into all templates"""
-#     next_election = Election.query.filter(
-#         Election.election_date >= date.today(),
-#         Election.is_active == True
-#     ).order_by(Election.election_date.asc()).first()
-    
-#     days_until_election = None
-#     if next_election:
-#         days_until_election = (next_election.election_date - date.today()).days
-    
-#     return dict(next_election=next_election, days_until_election=days_until_election)
