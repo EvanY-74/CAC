@@ -118,6 +118,7 @@ def api_polling_locations():
     
     try:
         locations = get_polling_locations(address)
+        print(locations)
         return jsonify(locations)
     except Exception as e:
         logging.error(f"Error fetching polling locations: {e}")

@@ -4,7 +4,7 @@ import logging
 from typing import Dict, List, Any
 
 # API Keys from environment variables
-GOOGLE_CIVICS_API_KEY = os.getenv('CIVICS_API_KEY', 'your_google_civics_api_key')
+CIVICS_API_KEY = os.getenv('CIVICS_API_KEY', 'your_google_civics_api_key')
 GOOGLE_MAPS_API_KEY = os.getenv('GOOGLE_MAPS_API_KEY', 'your_google_maps_api_key')
 
 def get_polling_locations(address: str) -> Dict[str, Any]:
@@ -14,15 +14,17 @@ def get_polling_locations(address: str) -> Dict[str, Any]:
     try:
         url = "https://www.googleapis.com/civicinfo/v2/voterinfo"
         params = {
-            'key': GOOGLE_CIVICS_API_KEY,
+            'key': CIVICS_API_KEY,
             'address': address,
-            'electionId': '2000'  # Use latest election ID
+            # 'electionId': '2000'  # Use latest election ID
+            'electionId': '9526'  # Use latest election ID
         }
         
         response = requests.get(url, params=params)
         response.raise_for_status()
         
         data = response.json()
+        print(data)
         
         # Extract polling location information
         polling_locations = []
@@ -77,7 +79,7 @@ def get_representatives(address: str) -> Dict[str, Any]:
     try:
         url = "https://www.googleapis.com/civicinfo/v2/representatives"
         params = {
-            'key': GOOGLE_CIVICS_API_KEY,
+            'key': CIVICS_API_KEY,
             'address': address,
             'levels': 'country,administrativeArea1,administrativeArea2,locality',
             'roles': 'legislatorUpperBody,legislatorLowerBody,executiveHead'
@@ -139,7 +141,7 @@ def get_elections() -> Dict[str, Any]:
     try:
         url = "https://www.googleapis.com/civicinfo/v2/elections"
         params = {
-            'key': GOOGLE_CIVICS_API_KEY
+            'key': CIVICS_API_KEY
         }
         
         response = requests.get(url, params=params)
