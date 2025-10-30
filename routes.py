@@ -115,7 +115,6 @@ def api_polling_locations(): # TODO: Credit Google Civics API
     address = request.args.get('address')
     if not address:
         return jsonify({'error': 'Address is required'}), 400
-    
     try:
         locations = get_polling_locations(address)
         return jsonify(locations)
