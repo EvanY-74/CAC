@@ -5,8 +5,7 @@
     <div class="row mb-5">
         <div class="col-lg-8 mx-auto text-center">
             <h1 class="display-4 mb-4">
-                <i class="fas fa-vote-yea text-primary me-3"></i>
-                Welcome to MyNCRep
+                <strong>Welcome to MyNCRep</strong>
             </h1>
             <p class="lead mb-4">
                 Your comprehensive guide to voting and civic engagement in North Carolina. 
@@ -86,7 +85,6 @@
             </div>
         </div>
         
-        
         <div class="col-md-6 col-lg-4">
             <div class="card h-100">
                 <div class="card-body text-center">
@@ -109,6 +107,19 @@
                         A simple guide that walks you through the entire voting process from start to finish.
                     </p>
                     <a href="https://www.eac.gov/voters/voting-101-election-information-new-voters?utm_source=chatgpt.com" target="_new" class="btn btn-primary">Learn the process</a>
+                </div>
+            </div>
+        </div>
+        
+            <div class="col-md-6 col-lg-4">
+                <div class="card h-100">
+                    <div class="card-body text-center">
+                    <i class="fas fa-user-tie fa-3x text-primary mb-3"></i>
+                    <h5 class="card-title">My Representatives</h5>
+                    <p class="card-text">
+                        Find your local, state, and federal representatives based on your address.
+                    </p>
+                    <a href="{{ url_for('representatives') }}" class="btn btn-primary">Find Reps</a>
                 </div>
             </div>
         </div>

@@ -8,56 +8,8 @@
         <div class="col">
             <h1>
                 <i class="fas fa-user-tie text-primary me-2"></i>
-                Find Your Representatives
+                Representative Information
             </h1>
-            <p class="lead">
-                Enter your address to find your local, state, and federal representatives.
-            </p>
-        </div>
-    </div>
-
-    <!-- Address Input -->
-    <div class="row mb-4">
-        <div class="col-lg-8 mx-auto">
-            <div class="card">
-                <div class="card-header">
-                    <h5 class="mb-0">
-                        <i class="fas fa-search me-2"></i>
-                        Find Your Representatives
-                    </h5>
-                </div>
-                <div class="card-body">
-                    <form id="representative-form">
-                        <div class="input-group mb-3">
-                            <span class="input-group-text">
-                                <i class="fas fa-map-marker-alt"></i>
-                            </span>
-                            <input type="text" class="form-control form-control-lg" 
-                                   id="address-input" name="address"
-                                   placeholder="Enter your full address (street, city, state, zip)"
-                                   required>
-                            <button class="btn btn-primary btn-lg" type="submit">
-                                <i class="fas fa-search me-2"></i>Find Representatives
-                            </button>
-                        </div>
-                        <small class="form-text text-muted">
-                            <i class="fas fa-info-circle me-1"></i>
-                            Include your complete address for the most accurate results
-                        </small>
-                    </form>
-
-                    <!-- Loading State -->
-                    <div id="loading" class="text-center mt-4 d-none">
-                        <div class="spinner-border text-primary" role="status">
-                            <span class="visually-hidden">Loading...</span>
-                        </div>
-                        <p class="mt-2">Finding your representatives...</p>
-                    </div>
-
-                    <!-- Error State -->
-                    <div id="error-message" class="alert alert-danger mt-3 d-none"></div>
-                </div>
-            </div>
         </div>
     </div>
 

@@ -42,7 +42,7 @@ async function handleAddressSearch() { //! test using this address: 1600 Amphith
             lng: parseFloat(data[0].lon)
         };
         
-        // Get polling locations from your Flask/Civi API
+        // Get polling locations from your Flask/Civic API
         const pollingData = await MyNCRep.makeAPIRequest(`/api/polling-locations?address=${encodeURIComponent(address)}`);
         
         if (pollingData.success) {
@@ -87,7 +87,7 @@ function displayPollingLocations(pollingData, userLocation) {
     clearMarkers();
     
     // Center on user location
-    map.setView([userLocation.lat, userLocation.lng], 11);
+    // map.setView([userLocation.lat, userLocation.lng], 11);
     
     // Add user marker
     userMarker = L.marker([userLocation.lat, userLocation.lng], {
@@ -106,6 +106,9 @@ function displayPollingLocations(pollingData, userLocation) {
     
     allLocations.forEach(loc => {
         if (!loc.address) return;
+        
+        // Skip if no coordinates
+        if (!loc.lat || !loc.lon) return;
         
         const marker = L.marker([loc.lat, loc.lon], {
             icon: L.icon({
@@ -127,28 +130,29 @@ function displayPollingLocations(pollingData, userLocation) {
     });
 }
     
-    // Clear all markers
-    function clearMarkers() {
-        markers.forEach(m => map.removeLayer(m));
-        markers = [];
-        if (userMarker) {
-            map.removeLayer(userMarker);
-            userMarker = null;
-        }
+// Clear all markers
+function clearMarkers() {
+    markers.forEach(m => map.removeLayer(m));
+    markers = [];
+    if (userMarker) {
+        map.removeLayer(userMarker);
+        userMarker = null;
     }
-    
-    // UI helpers
-    function showLoadingState() {
-        document.getElementById('loading').classList.remove('d-none');
-    }
-    function hideLoadingState() {
-        document.getElementById('loading').classList.add('d-none');
-    }
-    function showError(msg) {
-        const err = document.getElementById('error-message');
-        err.textContent = msg;
-        err.classList.remove('d-none');
-    }
-    
-    // Initialize
-    initMap();
+}
+
+// UI helpers
+function showLoadingState() {
+    document.getElementById('loading').classList.remove('d-none');
+}
+function hideLoadingState() {
+    document.getElementById('loading').classList.add('d-none');
+}
+function showError(msg) {
+    console.error(msg);
+    const err = document.getElementById('error-message');
+    err.textContent = msg;
+    err.classList.remove('d-none');
+}
+
+// Initialize
+initMap();

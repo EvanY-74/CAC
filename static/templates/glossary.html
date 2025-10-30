@@ -81,18 +81,18 @@
                 {% if first_letter != ns.current_letter %}
                     {% set ns.current_letter = first_letter %}
                     <div class="anchor" id="letter-{{ ns.current_letter }}"></div>
-                    <h3 class="text-primary mb-3 mt-4">{{ ns.current_letter }}</h3>
+                    <h3 class="text-primary mb-3 mt-4 big-letter">{{ ns.current_letter }}</h3>
                 {% endif %}
                 
-                <div class="card mb-3 term-card" data-term="{{ term.term.lower() }}" data-category="{{ term.category }}">
+                <div class="card mb-3 term-card" data-term="{{ term.term.lower() }}" data-term-original="{{ term.term|e }}" data-definition="{{ term.definition|e }}" data-category="{{ term.category }}">
                     <div class="card-body">
                         <div class="row">
                             <div class="col">
                                 <h5 class="card-title text-primary">
-                                    {{ term.term }}
+                                    <span class="term-text">{{ term.term }}</span>
                                     <span class="badge bg-secondary ms-2">{{ term.category }}</span>
                                 </h5>
-                                <p class="card-text">{{ term.definition }}</p>
+                                <p class="definition-text">{{ term.definition }}</p>
                             </div>
                         </div>
                     </div>
@@ -196,27 +196,74 @@
 </div>
 
 <script>
-// Search functionality
-document.getElementById('search-terms').addEventListener('input', function() {
-    const searchTerm = this.value.toLowerCase();
+// Helper to escape regex special characters
+function escapeRegExp(string) {
+    return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}
+
+// Search functionality with highlighting
+document.getElementById('search-terms').addEventListener('input', function () {
+    const raw = this.value;
+    const searchTerm = raw.toLowerCase();
     const termCards = document.querySelectorAll('.term-card');
-    
+    const bigLetters = document.querySelectorAll('.big-letter');
+
     termCards.forEach(card => {
-        const termName = card.dataset.term;
-        const termText = card.textContent.toLowerCase();
-        
-        if (termText.includes(searchTerm)) {
-            card.style.display = 'block';
+        const termLower = card.dataset.term || '';
+        const termOriginal = card.dataset.termOriginal || '';
+        const definitionOriginal = card.dataset.definition || '';
+        const termTextEl = card.querySelector('.term-text');
+        const definitionEl = card.querySelector('.definition-text');
+
+        // Show/hide based on whether the term OR definition contains the search string
+        const definitionLower = definitionOriginal.toLowerCase();
+        const isVisible = searchTerm === '' ? true : 
+            termLower.includes(searchTerm) || definitionLower.includes(searchTerm);
+        card.style.display = isVisible ? 'block' : 'none';
+
+        // Apply highlighting only when visible and search term non-empty
+        if (isVisible && searchTerm.length > 0) {
+            try {
+                const re = new RegExp('(' + escapeRegExp(raw) + ')', 'ig');
+                // Replace matched parts while preserving original casing in both term and definition
+                const highlightedTerm = termOriginal.replace(re, '<span class="glossary-highlight">$1</span>');
+                const highlightedDef = definitionOriginal.replace(re, '<span class="glossary-highlight">$1</span>');
+                termTextEl.innerHTML = highlightedTerm;
+                definitionEl.innerHTML = highlightedDef;
+            } catch (e) {
+                // In case of an unexpected regex issue, fallback to plain text
+                termTextEl.textContent = termOriginal;
+                definitionEl.textContent = definitionOriginal;
+            }
         } else {
-            card.style.display = 'none';
+            // Reset to original text when no search
+            termTextEl.textContent = termOriginal;
+            definitionEl.textContent = definitionOriginal;
         }
     });
+
+    // Then, check each big-letter heading
+    bigLetters.forEach(letter => {
+        let next = letter.nextElementSibling;
+        let hasVisible = false;
+
+        while (next && !next.classList.contains('big-letter')) {
+            if (next.classList.contains('term-card') && next.style.display !== 'none') {
+                hasVisible = true;
+                break;
+            }
+            next = next.nextElementSibling;
+        }
+
+        letter.style.display = hasVisible ? 'block' : 'none';
+    });
 });
+
 
 // Category filter functionality
 function filterByCategory() {
     const selectedCategory = document.getElementById('category-filter').value;
-    window.location.href = '{{ url_for("glossary") }}?category=' + selectedCategory;
+    window.location.href = '{{ url_for("glossary") }}' + (selectedCategory == 'all' ? '' : '?category=' + selectedCategory);
 }
 
 // Smooth scrolling for alphabet links

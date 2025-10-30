@@ -1,4 +1,4 @@
-from flask import render_template, request, redirect, url_for, flash, jsonify
+from flask import render_template, request, redirect, url_for, flash, jsonify, session
 from app import app
 
 import data
@@ -33,26 +33,20 @@ def submit_quiz():
     registered = request.form.get('registered')
     address = request.form.get('address')
     election_type = request.form.get('election_type')
-    
-    # Determine eligibility
-    eligible = age >= 18 and citizenship == 'yes'
-    
-    if not eligible:
-        flash('You must be 18 years old and a U.S. citizen to vote.', 'warning')
-        return redirect(url_for('voting_info'))
-    
-    if registered == 'no':
-        flash('You need to register to vote first. Check the voting information page for registration details.', 'info')
-        return redirect(url_for('voting_info'))
-    
-    # Store user preferences in session for personalized experience
-    from flask import session
-    session['user_address'] = address
-    session['election_type'] = election_type
-    session['eligible'] = True
-    
-    flash('Great! You\'re eligible to vote. Explore the features below to get informed.', 'success')
-    return redirect(url_for('candidates'))
+    # Store user quiz answers in session and mark quiz as completed.
+    # NOTE: allow submission regardless of answers (user requested this behavior).
+    session['quiz_answers'] = {
+        'age': age,
+        'citizenship': citizenship,
+        'registered': registered,
+        'address': address,
+        'election_type': election_type,
+    }
+    session['quiz_completed'] = True
+
+    # Provide friendly messaging but don't block navigation.
+    flash('Thanks — your quiz responses have been saved. You can now view voting information.', 'success')
+    return redirect(url_for('voting_info'))
 
 @app.route('/candidates')
 def candidates():
@@ -99,8 +93,26 @@ def voting_info():
         {'event': 'Election Day', 'date': 'First Tuesday after first Monday in November'}
     ]
     
+    # If user hasn't completed the quiz yet, redirect them to the quiz first.
+    if not session.get('quiz_completed'):
+        # Preserve original target so after quiz we land here.
+        session['post_quiz_target'] = url_for('voting_info')
+        return redirect(url_for('quiz'))
+
+    # Build a dict of whether each requirement is met based on quiz answers.
+    answers = session.get('quiz_answers', {})
+    requirement_status = {
+        'age': (answers.get('age') is not None and answers.get('age') >= 18),
+        'citizenship': (answers.get('citizenship') == 'yes'),
+        'residence': bool(answers.get('address')),
+        'registration': (answers.get('registered') == 'yes'),
+        # 'id_required' isn't asked on the quiz; assume requirement is met (or keep True)
+        'id_required': True,
+    }
+
     return render_template('voting_info.html',
                           requirements=voting_requirements,
+                          requirement_status=requirement_status,
                           steps=voting_steps,
                           dates=important_dates)
 

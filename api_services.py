@@ -36,7 +36,7 @@ def get_polling_locations(address: str) -> Dict[str, Any]:
                     'hours': location.get('pollingHours', 'Check local listings'),
                     'notes': location.get('notes', ''),
                     'lat': location.get('latitude', ''),
-                    'lon': location.get('longitude', ''),
+                    'lon': location.get('longitude', '')
                 }
                 polling_locations.append(location_info)
         
@@ -49,7 +49,9 @@ def get_polling_locations(address: str) -> Dict[str, Any]:
                     'address': format_address(site.get('address', {})),
                     'hours': site.get('pollingHours', 'Check local listings'),
                     'notes': site.get('notes', ''),
-                    'type': 'early_voting'
+                    'type': 'early_voting',
+                    'lat': location.get('latitude', ''),
+                    'lon': location.get('longitude', ''),
                 }
                 early_vote_sites.append(site_info)
         

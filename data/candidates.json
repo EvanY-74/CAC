@@ -2,13 +2,20 @@
     {
         "id": 1,
         "name": "John Doe",
-        "party": "Democrat",
-        "stance": "Pro-Environment"
+        "non_partisan": true,
+        "party?": "Democrat",
+        "position": "Mayor",
+        "location": "Durham", // things like district number works too
+        "stances": [
+            "Strong advocate for clean-energy solutions",
+            "Anti-abortion",
+            "Encourages market-based solutions, anti-government intervention"
+            // add anywhere from 6 - 7 stances
+        ],
+        "contact": [
+            "phone?": 9196678845
+            "email?": "johndoe@gmail.com"
+        ]
     },
-    {
-        "id": 2,
-        "name": "Jane Smith",
-        "party": "Republican",
-        "stance": "Pro-Business"
-    }
+    ...
 ]

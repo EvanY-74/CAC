@@ -27,9 +27,26 @@ html {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
-/* Sticky navigation enhancement */
+/* Navigation styling */
 .navbar {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    padding: 0.5rem 1rem;
+}
+
+.navbar-logo {
+    height: 40px;
+    width: auto;
+    display: block;
+}
+
+.navbar-nav {
+    gap: 0.5rem;
+}
+
+.nav-link {
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    white-space: nowrap;
 }
 
 /* Election countdown badge styling */
@@ -88,6 +105,16 @@ html {
 
 .term-card:hover {
     background-color: var(--bs-gray-800);
+}
+
+.glossary-highlight {
+    /* color: #fd7e14; */
+    background-color: rgba(var(--bs-primary-rgb), .2);
+    text-decoration: underline;
+    padding: 0px;
+    border-radius: 3px;
+    margin-left: 0px;
+    margin-right: 0px;
 }
 
 /* Candidate stance badges */
