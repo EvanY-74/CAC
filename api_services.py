@@ -15,16 +15,15 @@ def get_polling_locations(address: str) -> Dict[str, Any]:
         url = "https://www.googleapis.com/civicinfo/v2/voterinfo"
         params = {
             'key': CIVICS_API_KEY,
-            'address': address,
+            'address': address
             # 'electionId': '2000'  # Use latest election ID
-            'electionId': '9526'  # Use latest election ID
+            # 'electionId': '9526'  # Use latest election ID
         }
         
         response = requests.get(url, params=params)
         response.raise_for_status()
         
         data = response.json()
-        print(data)
         
         # Extract polling location information
         polling_locations = []
@@ -35,7 +34,9 @@ def get_polling_locations(address: str) -> Dict[str, Any]:
                     'name': location.get('address', {}).get('locationName', 'Polling Location'),
                     'address': format_address(location.get('address', {})),
                     'hours': location.get('pollingHours', 'Check local listings'),
-                    'notes': location.get('notes', '')
+                    'notes': location.get('notes', ''),
+                    'lat': location.get('latitude', ''),
+                    'lon': location.get('longitude', ''),
                 }
                 polling_locations.append(location_info)
         
@@ -187,11 +188,11 @@ def format_address(address_obj: Dict[str, str]) -> str:
     
     parts = []
     
-    if 'line1' in address_obj:
+    if 'line1' in address_obj and address_obj['line1'] != '':
         parts.append(address_obj['line1'])
-    if 'line2' in address_obj:
+    if 'line2' in address_obj and address_obj['line2'] != '':
         parts.append(address_obj['line2'])
-    if 'line3' in address_obj:
+    if 'line3' in address_obj and address_obj['line3'] != '':
         parts.append(address_obj['line3'])
     
     city_state_zip = []

@@ -110,7 +110,7 @@ def polling_map():
     return render_template('polling_map.html')
 
 @app.route('/api/polling-locations')
-def api_polling_locations():
+def api_polling_locations(): # TODO: Credit Google Civics API
     """API endpoint to get polling locations based on address"""
     address = request.args.get('address')
     if not address:
@@ -118,7 +118,6 @@ def api_polling_locations():
     
     try:
         locations = get_polling_locations(address)
-        print(locations)
         return jsonify(locations)
     except Exception as e:
         logging.error(f"Error fetching polling locations: {e}")
