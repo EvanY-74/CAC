@@ -2,23 +2,14 @@ from flask import render_template, request, redirect, url_for, flash, jsonify, s
 from app import app
 
 import data
-# from models import GovTerm, Candidate, CandidateStance, Election
 from api_services import get_polling_locations, get_representatives, get_elections
 import logging
-# from datetime import datetime, date
 
 @app.route('/')
 def index():
     """Home page with overview of features"""
-    # Get next upcoming election
-    # next_election = Election.query.filter(
-    #     Election.election_date >= date.today(),
-    #     Election.is_active == True
-    # ).order_by(Election.election_date.asc()).first()
-    # next_election = date.today() # Placeholder for actual election data retrieval
-    next_election = False # Placeholder for actual election data retrieval
     
-    return render_template('index.html', next_election=next_election)
+    return render_template('index.html')
 
 @app.route('/quiz')
 def quiz():
@@ -60,7 +51,6 @@ def candidates():
         'Infrastructure', 'Public Safety', 'Social Issues'
     ]
     
-    # return render_template('candidates.html')
     return render_template('candidates.html', 
                           candidates=candidates_list, 
                           key_issues=key_issues)
