@@ -1,21 +1,394 @@
 [
     {
         "id": 1,
-        "name": "John Doe",
-        "non_partisan": true,
-        "party?": "Democrat",
-        "position": "Mayor",
-        "location": "Durham", // things like district number works too
+        "name": "Josh Stein",
+        "non_partisan": false,
+        "party": "Democrat",
+        "position": "Governor",
+        "location": "North Carolina",
         "stances": [
-            "Strong advocate for clean-energy solutions",
-            "Anti-abortion",
-            "Encourages market-based solutions, anti-government intervention"
-            // add anywhere from 6 - 7 stances
+            "Supports reproductive rights and protecting abortion access",
+            "Advocates for safer communities through responsible gun legislation",
+            "Prioritizes public education funding and teacher support",
+            "Champions economic development and job creation initiatives",
+            "Supports affordable housing expansion and development",
+            "Focuses on protecting consumers and fighting corporate fraud",
+            "Committed to addressing climate change and environmental protection"
         ],
-        "contact": [
-            "phone?": 9196678845
-            "email?": "johndoe@gmail.com"
-        ]
+        "contact": {
+            "phone": "919-814-2000",
+            "email": "Available via governor.nc.gov/contact"
+        }
     },
-    ...
+    {
+        "id": 2,
+        "name": "Leonardo Williams",
+        "non_partisan": true,
+        "position": "Mayor",
+        "location": "Durham",
+        "stances": [
+            "Strong advocate for housing development and growth management",
+            "Supports downtown revitalization and economic development",
+            "Prioritizes youth violence prevention through Bull City Future Fund",
+            "Promotes efficient city government operations",
+            "Champions public safety with community-based approaches",
+            "Supports transit and infrastructure improvements",
+            "Advocates for business-friendly policies and job creation"
+        ],
+        "contact": {
+            "email": "leonardo.williams@durhamnc.gov"
+        }
+    },
+    {
+        "id": 3,
+        "name": "Anjan\u00e9e Bell",
+        "non_partisan": true,
+        "position": "Durham Mayor Candidate",
+        "location": "Durham",
+        "stances": [
+            "Strong advocate for tenant protections and affordable housing preservation",
+            "Supports raising city employee minimum wage to $25 per hour",
+            "Prioritizes climate-ready infrastructure and environmental justice",
+            "Advocates for community-driven development with local investment",
+            "Supports reimagining public safety with de-escalation approaches",
+            "Champions arts, small businesses, and youth investment",
+            "Emphasizes government accountability and transparency with public dashboards"
+        ],
+        "contact": {
+            "email": "Available via bellfordurham.com"
+        }
+    },
+    {
+        "id": 4,
+        "name": "Vi Lyles",
+        "non_partisan": false,
+        "party": "Democrat",
+        "position": "Mayor",
+        "location": "Charlotte",
+        "stances": [
+            "Prioritizes public safety investments in police and fire services",
+            "Advocates for affordable housing expansion and access",
+            "Supports infrastructure improvements including transportation and sidewalks",
+            "Focuses on fiscal responsibility while maintaining city services",
+            "Champions economic development benefiting all residents",
+            "Supports mental health response teams for public safety",
+            "Committed to transparent and accessible government"
+        ],
+        "contact": {
+            "email": "Available via Charlotte city website"
+        }
+    },
+    {
+        "id": 5,
+        "name": "Bill Saffo",
+        "non_partisan": false,
+        "party": "Democrat",
+        "position": "Mayor",
+        "location": "Wilmington",
+        "stances": [
+            "Prioritizes responsible growth management and infrastructure development",
+            "Strong advocate for public safety and police/fire personnel support",
+            "Champions flood mitigation and stormwater system improvements",
+            "Supports affordable housing expansion initiatives",
+            "Focuses on downtown revitalization and economic development",
+            "Advocates for green space preservation and trail expansion",
+            "Committed to community planning and neighborhood protection"
+        ],
+        "contact": {
+            "email": "Available via Wilmington city website"
+        }
+    },
+    {
+        "id": 6,
+        "name": "Allen Joines",
+        "non_partisan": false,
+        "party": "Democrat",
+        "position": "Mayor",
+        "location": "Winston-Salem",
+        "stances": [
+            "Long-serving mayor focused on steady city management",
+            "Supports economic development and job creation",
+            "Advocates for infrastructure improvements and maintenance",
+            "Prioritizes public safety and emergency services",
+            "Champions community partnerships and regional cooperation",
+            "Supports responsible fiscal management",
+            "Committed to transparent and accessible government operations"
+        ],
+        "contact": {
+            "phone": "336-727-8000",
+            "email": "Available via cityofws.org"
+        }
+    },
+    {
+        "id": 7,
+        "name": "Jess Anderson",
+        "non_partisan": true,
+        "position": "Mayor",
+        "location": "Chapel Hill",
+        "stances": [
+            "Strong advocate for affordable housing near transit",
+            "Supports updating land-use and zoning approaches",
+            "Prioritizes fiscal responsibility while maintaining services",
+            "Champions democracy and inclusive community engagement",
+            "Advocates for sustainable development and environmental protection",
+            "Supports infrastructure investment and public transportation",
+            "Committed to addressing cost of living concerns"
+        ],
+        "contact": {
+            "email": "Available via Chapel Hill town website"
+        }
+    },
+    {
+        "id": 8,
+        "name": "Thom Tillis",
+        "non_partisan": false,
+        "party": "Republican",
+        "position": "U.S. Senator",
+        "location": "North Carolina",
+        "stances": [
+            "Supports conservative fiscal policies and tax reform",
+            "Advocates for strong national defense and military funding",
+            "Opposes expanded government regulation",
+            "Supports infrastructure investment and development",
+            "Advocates for border security measures",
+            "Opposes federal overreach in state matters",
+            "Supports traditional energy development alongside renewables"
+        ],
+        "contact": {
+            "phone": "202-224-6342",
+            "email": "Available via tillis.senate.gov"
+        }
+    },
+    {
+        "id": 9,
+        "name": "Ted Budd",
+        "non_partisan": false,
+        "party": "Republican",
+        "position": "U.S. Senator",
+        "location": "North Carolina",
+        "stances": [
+            "Strong advocate for Second Amendment rights",
+            "Supports conservative fiscal policies and spending restraint",
+            "Opposes abortion rights expansion",
+            "Advocates for border security and immigration enforcement",
+            "Supports tax cuts and reduced government regulation",
+            "Champions traditional family values",
+            "Supports agricultural interests and rural communities"
+        ],
+        "contact": {
+            "phone": "202-224-3154",
+            "email": "Available via budd.senate.gov"
+        }
+    },
+    {
+        "id": 21,
+        "name": "Phil Berger",
+        "non_partisan": false,
+        "party": "Republican",
+        "position": "State Senator",
+        "location": "North Carolina Senate",
+        "district": 26,
+        "stances": [
+            "Senate leader advocating for conservative fiscal policies",
+            "Supports tax cuts and reduced government spending",
+            "Strong advocate for Second Amendment rights",
+            "Opposes abortion rights expansion",
+            "Supports school choice and education reform",
+            "Advocates for business-friendly regulations",
+            "Champions limited government intervention"
+        ],
+        "contact": {
+            "phone": "919-733-5708"
+        }
+    },
+    {
+        "id": 22,
+        "name": "Dan Blue",
+        "non_partisan": false,
+        "party": "Democrat",
+        "position": "State Senator",
+        "location": "North Carolina Senate",
+        "district": 14,
+        "stances": [
+            "Strong advocate for public education funding",
+            "Supports healthcare expansion and Medicaid",
+            "Champions voting rights and election access",
+            "Advocates for criminal justice reform",
+            "Supports affordable housing initiatives",
+            "Prioritizes economic equity and opportunity",
+            "Committed to environmental protection"
+        ],
+        "contact": {
+            "phone": "919-733-5752"
+        }
+    },
+    {
+        "id": 23,
+        "name": "Natalie Murdock",
+        "non_partisan": false,
+        "party": "Democrat",
+        "position": "State Senator",
+        "location": "North Carolina Senate",
+        "district": 20,
+        "stances": [
+            "Strong advocate for workers' rights and labor protections",
+            "Supports Medicaid expansion and healthcare access",
+            "Champions public education and teacher pay increases",
+            "Advocates for affordable housing development",
+            "Supports environmental protection and climate action",
+            "Prioritizes criminal justice reform",
+            "Committed to LGBTQ+ rights and equality"
+        ],
+        "contact": {
+            "phone": "919-733-4599"
+        }
+    },
+    {
+        "id": 24,
+        "name": "Sydney Batch",
+        "non_partisan": false,
+        "party": "Democrat",
+        "position": "State Senator, Senate Democratic Leader",
+        "location": "North Carolina Senate",
+        "district": 17,
+        "stances": [
+            "Strong advocate for public education investment",
+            "Supports reproductive rights and healthcare access",
+            "Champions environmental protection and clean energy",
+            "Advocates for mental health services expansion",
+            "Supports gun violence prevention measures",
+            "Prioritizes affordable housing and development",
+            "Committed to transparent and accountable government"
+        ],
+        "contact": {
+            "phone": "919-733-5653"
+        }
+    },
+    {
+        "id": 25,
+        "name": "Graig Meyer",
+        "non_partisan": false,
+        "party": "Democrat",
+        "position": "State Senator",
+        "location": "North Carolina Senate - Orange County",
+        "district": 23,
+        "stances": [
+            "Strong advocate for public education funding and teacher support",
+            "Supports affordable housing and anti-displacement policies",
+            "Champions environmental protection and climate action",
+            "Advocates for healthcare access and mental health services",
+            "Supports criminal justice reform and rehabilitation",
+            "Prioritizes equity and social justice initiatives",
+            "Committed to transparent governance"
+        ],
+        "contact": {
+            "phone": "919-733-5804"
+        }
+    },
+    {
+        "id": 26,
+        "name": "Julie Mayfield",
+        "non_partisan": false,
+        "party": "Democrat",
+        "position": "State Senator",
+        "location": "North Carolina Senate - Asheville/Buncombe",
+        "district": 49,
+        "stances": [
+            "Strong advocate for environmental protection and clean water",
+            "Supports healthcare access and Medicaid expansion",
+            "Champions affordable housing and tenant protections",
+            "Advocates for public education funding",
+            "Prioritizes climate action and renewable energy",
+            "Supports workers' rights and fair wages",
+            "Committed to government transparency and accountability"
+        ],
+        "contact": {
+            "phone": "919-715-3001"
+        }
+    },
+    {
+        "id": 27,
+        "name": "Jay Chaudhuri",
+        "non_partisan": false,
+        "party": "Democrat",
+        "position": "State Senator Democratic Whip",
+        "location": "North Carolina Senate - Wake County",
+        "district": 16,
+        "stances": [
+            "Strong advocate for public education and teacher compensation",
+            "Supports affordable healthcare and prescription drug access",
+            "Champions small business development and economic growth",
+            "Advocates for tax fairness and middle-class tax relief",
+            "Supports infrastructure investment and transportation",
+            "Prioritizes veterans' services and support",
+            "Committed to fiscal responsibility and smart budgeting"
+        ],
+        "contact": {
+            "phone": "919-715-6400"
+        }
+    },
+    {
+        "id": 28,
+        "name": "Shinica Thomas",
+        "non_partisan": false,
+        "party": "Democrat",
+        "position": "Wake County Commissioner (Chair)",
+        "location": "Wake County",
+        "district": 6,
+        "stances": [
+            "Strong advocate for affordable housing initiatives",
+            "Supports public education and school infrastructure funding",
+            "Champions economic development and job creation",
+            "Advocates for healthcare access and mental health services",
+            "Supports public safety and emergency services",
+            "Prioritizes environmental sustainability",
+            "Committed to equitable services across all districts"
+        ],
+        "contact": {
+            "phone": "919-856-6180",
+            "email": "Available via wake.gov"
+        }
+    },
+    {
+        "id": 29,
+        "name": "Susan Evans",
+        "non_partisan": false,
+        "party": "Democrat",
+        "position": "Wake County Commissioner (Vice Chair)",
+        "location": "Wake County",
+        "district": 4,
+        "stances": [
+            "Advocates for responsible growth and development",
+            "Supports public education and community college funding",
+            "Champions environmental protection and greenways",
+            "Supports affordable housing and transit-oriented development",
+            "Prioritizes fiscal responsibility and budget oversight",
+            "Advocates for parks and recreation expansion",
+            "Committed to transparent county operations"
+        ],
+        "contact": {
+            "phone": "919-856-6180",
+            "email": "Available via wake.gov"
+        }
+    },
+    {
+        "id": 30,
+        "name": "Juan Diego Mazuera Arias",
+        "non_partisan": true,
+        "position": "City Council Candidate",
+        "location": "Charlotte",
+        "district": 5,
+        "stances": [
+            "Strong advocate for transparency and open government",
+            "Prioritizes public safety with community-focused approaches",
+            "Supports economic opportunity and local job creation",
+            "Champions affordable housing and tenant protections",
+            "Advocates for youth programs and violence prevention",
+            "Supports small business development and local hiring",
+            "Committed to accessible and responsive city government"
+        ],
+        "contact": {
+            "email": "Available via campaign website"
+        }
+    }
 ]

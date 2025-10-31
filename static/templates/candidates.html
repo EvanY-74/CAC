@@ -111,8 +111,7 @@
                     <ul class="list-unstyled">
                         {% for stance in candidate.stances[:3] %}
                         <li class="mb-2">
-                            <strong>{{ stance.issue }}:</strong>
-                            <br><small>{{ stance.stance[:100] }}{% if stance.stance|length > 100 %}...{% endif %}</small>
+                            <small>{{ stance[:100] }}{% if stance|length > 100 %}...{% endif %}</small>
                         </li>
                         {% endfor %}
                     </ul>
@@ -166,17 +165,13 @@
                         {% endif %}
                         
                         {% if candidate.stances %}
-                        <h6>Positions on Issues</h6>
+                    <h6>Positions on Issues</h6>
+                    <ul class="list-unstyled">
                         {% for stance in candidate.stances %}
-                        <div class="mb-3">
-                            <strong class="text-primary">{{ stance.issue }}</strong>
-                            <p>{{ stance.stance }}</p>
-                            {% if stance.source_url %}
-                            <small><a href="{{ stance.source_url }}" target="_blank">Source</a></small>
-                            {% endif %}
-                        </div>
+                        <li class="mb-3">{{ stance }}</li>
                         {% endfor %}
-                        {% endif %}
+                    </ul>
+                    {% endif %}
                     </div>
                     <div class="modal-footer">
                         {% if candidate.website %}

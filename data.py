@@ -48,4 +48,3 @@ def search_candidates(attribute, value, unique=True, case_sensitive=False):
                 results.append(candidate)
 
     return results
-
