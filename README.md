@@ -5,7 +5,7 @@
 
 2. Install [poetry](https://python-poetry.org/docs/)
     - Poetry is a package manager for python that keeps track of the needed packages and dependencies for those packages so you can install them easily.
-    - Install in vscode terminal (open using _Ctrl + \`_) by running: `(Invoke-WebRequest -Uri https://install.python-poetry.org -UseBasicParsing).Content | python -`
+    - Install in VS Code terminal (open using _Ctrl + \`_) by running: `(Invoke-WebRequest -Uri https://install.python-poetry.org -UseBasicParsing).Content | python -`
     - Then add this to your *Path environment variable* so you can use poetry: `%USERPROFILE%\AppData\Roaming\Python\Scripts`
     - Check installation and correct environment variable configuration using `poetry --version`
     
