@@ -47,60 +47,34 @@ Clone the repo using your preferred method.
 
 ### 2. Install Poetry
 ```
-powershell
 (Invoke-WebRequest -Uri https://install.python-poetry.org -UseBasicParsing).Content | python -
 ```
 Add this directory to your PATH:
 ```
 shell
-```
-Copy code
-```
 %USERPROFILE%\AppData\Roaming\Python\Scripts
 ```
 Verify installation:
 ```
-powershell
-Copy code
 poetry --version
 ```
 3. Create a Virtual Environment
-```
-powershell
-```
-Copy code
 ```
 python -m venv venv
 ```
 Activate it:
 ```
-powershell
-```
-Copy code
-```
 venv\Scripts\activate
 ```
 If script execution is blocked:
-```
-powershell
-```
-Copy code
 ```
 Set-ExecutionPolicy RemoteSigned -Scope CurrentUser -Force
 ```
 4. Install Dependencies
 ```
-powershell
-```
-Copy code
-```
 poetry install
 ```
 6. Run the App
-```
-powershell
-```
-Copy code
 ```
 python main.py
 ```
