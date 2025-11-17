@@ -58,11 +58,11 @@ Verify installation:
 ```
 poetry --version
 ```
-3. Create a Virtual Environment
+### 3. Create a Virtual Environment
 ```
 python -m venv venv
 ```
-Activate it:
+### 4. Activate it:
 ```
 venv\Scripts\activate
 ```
@@ -70,11 +70,11 @@ If script execution is blocked:
 ```
 Set-ExecutionPolicy RemoteSigned -Scope CurrentUser -Force
 ```
-4. Install Dependencies
+### 5. Install Dependencies
 ```
 poetry install
 ```
-6. Run the App
+### 6. Run the App
 ```
 python main.py
 ```
