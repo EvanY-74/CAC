@@ -83,12 +83,10 @@ The server will automatically restart when changes are made.
 Development Notes
 To add new packages:
 ```
-powershell
 poetry add package_name
 ```
 Other contributors should run:
 ```
-powershell
 poetry install
 ```
 to stay synced with the environment.
