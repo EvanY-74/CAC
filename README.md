@@ -1,28 +1,125 @@
-# HOW TO SET UP YOUR ENVIRONMENT
+# MyNCRep
 
-1. Clone GitHub repository (if you haven't done so already)
-    - Press the **Code** button then copy the _URL_
+MyNCRep is a civic-information tool built to help North Carolina voters cut through noise and get the facts that matter. It shows where to vote, what you need, and what each candidate actually stands for. No spins. No party narratives. Just information you can use.
 
-2. Install [poetry](https://python-poetry.org/docs/)
-    - Poetry is a package manager for python that keeps track of the needed packages and dependencies for those packages so you can install them easily.
-    - Install in VS Code terminal (open using _Ctrl + \`_) by running: `(Invoke-WebRequest -Uri https://install.python-poetry.org -UseBasicParsing).Content | python -`
-    - Then add this to your *Path environment variable* so you can use poetry: `%USERPROFILE%\AppData\Roaming\Python\Scripts`
-    - Check installation and correct environment variable configuration using `poetry --version`
-    
-3. Create a virtual environment with: `python -m venv venv`
-    - This will create your very own _venv_ folder where stuff like libraries and scripts will go
+This project began as an entry for the **Congressional App Challenge**, created by students who realized most new voters don’t lack opinions; they lack context. MyNCRep was our answer to that gap.
 
-4. Activate it: `venv\Scripts\activate`
-    - You might need to run `Set-ExecutionPolicy RemoteSigned -Scope CurrentUser -Force` if running scripts is disabled
-    - You should see **`(venv)`** before the working directory showing that your virtual environment is activated
+## What It Does
 
-5. Install all the dependencies (one time thing): `poetry install`
-    - This installs all the packages and dependencies in _pyproject.toml_ and _poetry.lock_ to your virtual environment. They are stored in `venv\Lib\site-packages`.
+- Shows nearby polling places using optional location access  
+- Explains how to register and vote, with reminders for key deadlines  
+- Displays candidate profiles with issue positions, biographies, and voting histories  
+- Pulls data from trusted sources like Vote Smart and NCSBE  
+- Provides short guides on government processes for new voters  
+- Tailors information based on a simple onboarding quiz  
 
-6. Run the app: `python main.py`
-    - When you make changes, the server will automatically restart with the new changes.
+The goal is simple: help people understand who represents them and what those people stand for.
 
-# DEVELOPMENT
+## Technical Overview
 
-- If you want to add a new package, use `poetry add [package name]`
-- Other users will need to re-run `poetry install` in order to locally install the package on their computer
+- Google Civics API for polling and representative data  
+- Leaflet + OpenStreetMap for interactive mapping  
+- Python backend managed with Poetry  
+- Modular architecture so contributors can easily extend functionality  
+
+## Known Challenges
+
+During development, we ran into several issues that shaped how the app works:
+
+- Missing NC polling data in VIP, requiring fallback logic  
+- Choosing between API-driven data flow and local storage  
+- Designing location features without compromising user safety  
+- Ensuring civic data is presented in a neutral, verifiable way  
+
+## Roadmap: Version 2.0
+
+- Expand beyond North Carolina  
+- Real-time updates when bills are introduced or candidates release statements  
+- Gamified civics learning modules  
+- AI-powered summaries of bills and issue positions  
+- Partnerships with election boards for verified polling data  
+- Cleaner UI and broader device support  
+
+## Setup
+
+### 1. Clone the Repository
+Clone the repo using your preferred method.
+
+### 2. Install Poetry
+```
+powershell
+(Invoke-WebRequest -Uri https://install.python-poetry.org -UseBasicParsing).Content | python -
+```
+Add this directory to your PATH:
+```
+shell
+```
+Copy code
+```
+%USERPROFILE%\AppData\Roaming\Python\Scripts
+```
+Verify installation:
+```
+powershell
+Copy code
+poetry --version
+```
+3. Create a Virtual Environment
+```
+powershell
+```
+Copy code
+```
+python -m venv venv
+```
+Activate it:
+```
+powershell
+```
+Copy code
+```
+venv\Scripts\activate
+```
+If script execution is blocked:
+```
+powershell
+```
+Copy code
+```
+Set-ExecutionPolicy RemoteSigned -Scope CurrentUser -Force
+```
+4. Install Dependencies
+```
+powershell
+```
+Copy code
+```
+poetry install
+```
+6. Run the App
+```
+powershell
+```
+Copy code
+```
+python main.py
+```
+The server will automatically restart when changes are made.
+
+Development Notes
+To add new packages:
+```
+powershell
+poetry add package_name
+```
+Other contributors should run:
+```
+powershell
+poetry install
+```
+to stay synced with the environment.
+
+Authors
+Built by Aryan Vyahalkar, Evan Yango, Heerah Shah, & Arav Vyahalkar
+Students committed to making civic participation clearer, simpler, and easier to start.
+If you want to contribute, feel free to open an issue or pull request.
