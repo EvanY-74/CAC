@@ -91,7 +91,7 @@ poetry install
 ```
 to stay synced with the environment.
 
-### Authors
+## Authors
 
 Built by Aryan Vyahalkar, Evan Yango, Heerah Shah, & Arav Vyahalkar
 Students committed to making civic participation clearer, simpler, and easier to start.
