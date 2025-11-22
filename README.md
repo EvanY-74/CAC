@@ -80,7 +80,8 @@ python main.py
 ```
 The server will automatically restart when changes are made.
 
-Development Notes
+## Development Notes
+
 To add new packages:
 ```bash
 poetry add package_name
