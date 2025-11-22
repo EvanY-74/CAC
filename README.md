@@ -46,47 +46,47 @@ During development, we ran into several issues that shaped how the app works:
 Clone the repo using your preferred method.
 
 ### 2. Install Poetry
-```
+```bash
 (Invoke-WebRequest -Uri https://install.python-poetry.org -UseBasicParsing).Content | python -
 ```
 Add this directory to your PATH:
-```
+```bash
 shell
 %USERPROFILE%\AppData\Roaming\Python\Scripts
 ```
 Verify installation:
-```
+```bash
 poetry --version
 ```
 ### 3. Create a Virtual Environment
-```
+```bash
 python -m venv venv
 ```
 ### 4. Activate it:
-```
+```bash
 venv\Scripts\activate
 ```
 If script execution is blocked:
-```
+```bash
 Set-ExecutionPolicy RemoteSigned -Scope CurrentUser -Force
 ```
 ### 5. Install Dependencies
-```
+```bash
 poetry install
 ```
 ### 6. Run the App
-```
+```bash
 python main.py
 ```
 The server will automatically restart when changes are made.
 
 Development Notes
 To add new packages:
-```
+```bash
 poetry add package_name
 ```
 Other contributors should run:
-```
+```bash
 poetry install
 ```
 to stay synced with the environment.
