@@ -94,7 +94,7 @@ to stay synced with the environment.
 
 ## Authors
 
-Built by Aryan Vyahalkar, Evan Yango, Heerah Shah, & Arav Vyahalkar.
+Built by Aryan Vyahalkar, Evan Yango, Heerak Shah, & Arav Vyahalkar, students committed to making civic participation clearer, simpler, and easier to start.
 <br>
-Students committed to making civic participation clearer, simpler, and easier to start.
+<br>
 If you want to contribute, feel free to open an issue or pull request.
