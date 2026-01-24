@@ -84,7 +84,7 @@ The server will automatically restart when changes are made.
 
 To add new packages:
 ```bash
-poetry add package_name
+poetry add [package_name]
 ```
 Other contributors should run:
 ```bash
